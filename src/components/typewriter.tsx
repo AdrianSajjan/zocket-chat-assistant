@@ -25,7 +25,7 @@ export function Typewriter({ text, delay = 0, speed = 20, onComplete, ...props }
     } else {
       onComplete?.();
     }
-  }, [index, text, speed, delay]);
+  }, [index, text, speed, delay]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <span {...props}>{animated}</span>;
 }
