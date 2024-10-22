@@ -2,7 +2,6 @@ import { BookOpen, Bot, Frame, Map, PieChart, Settings2, SquareTerminal } from "
 import * as React from "react";
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { MainNavigation } from "@/layout/sidebar/navigation/main";
 import { SessionNavigation } from "@/layout/sidebar/navigation/projects";
 import { UserNavigation } from "@/layout/sidebar/navigation/user";
 
@@ -137,7 +136,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation items={data.main} />
         <SessionNavigation sessions={data.sessions} />
       </SidebarContent>
       <SidebarFooter>

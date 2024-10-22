@@ -1,6 +1,10 @@
+import { DiscoverAdsCard } from "@/components/cards/discover-ads";
+import GoogleCreativeCard from "@/components/cards/google-creative";
+import MetaCreativeCard from "@/components/cards/meta-creative";
 import { Typewriter } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { discoverAds, googleCreatives, metaCreatives } from "@/constants/creatives";
 import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
 import { ArrowUpIcon, PaperclipIcon, XIcon } from "lucide-react";
@@ -70,9 +74,11 @@ export function ChatScreen() {
         text: "Here are the generated meta adcopies",
         body: (
           <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
-            <div className="w-64 bg-red-100 h-96 shrink-0 rounded-xl">adcopy 1</div>
-            <div className="w-64 bg-red-100 h-96 shrink-0 rounded-xl">adcopy 2</div>
-            <div className="w-64 bg-red-100 h-96 shrink-0 rounded-xl">adcopy 3</div>
+            {metaCreatives.map((creative, index) => (
+              <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
+                <MetaCreativeCard creative={creative.creative} brand={creative.brand} />
+              </div>
+            ))}
           </div>
         ),
         type: "custom",
@@ -91,7 +97,15 @@ export function ChatScreen() {
       },
       {
         text: "Here are the generated google adcopies",
-        body: <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden"></div>,
+        body: (
+          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+            {googleCreatives.map((creative, index) => (
+              <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
+                <GoogleCreativeCard {...creative} />
+              </div>
+            ))}
+          </div>
+        ),
         type: "custom",
         wait: 3000,
       },
@@ -129,7 +143,15 @@ export function ChatScreen() {
       },
       {
         text: "Here are the latest ads from Adidas",
-        body: <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden"></div>,
+        body: (
+          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+            {discoverAds.map((ad, index) => (
+              <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
+                <DiscoverAdsCard {...ad} />
+              </div>
+            ))}
+          </div>
+        ),
         type: "custom",
         wait: 3000,
       },
