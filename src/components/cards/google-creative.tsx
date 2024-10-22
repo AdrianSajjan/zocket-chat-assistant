@@ -19,7 +19,7 @@ export default function GoogleCreativeCard({ headline, url, description, classNa
       <div className="overflow-hidden">
         <Tooltip>
           <TooltipTrigger>
-            <p className="text-sm text-heading/60 leading-snug line-clamp-3">{description}</p>
+            <p className="text-sm text-left text-heading/60 leading-snug line-clamp-3">{description}</p>
           </TooltipTrigger>
           <TooltipContent className="max-w-sm">
             <TooltipArrow />

@@ -5,9 +5,9 @@ import { cn, upperFirst } from "@/lib/utils";
 
 export function DiscoverAdsCard({ profile_picture, name, media, content, className }: DiscoverAdsCardProps) {
   return (
-    <div className={cn("border bg-white border-gray-200 rounded-2xl py-4 px-3 max-w-sm", className)}>
+    <div className={cn("border bg-white border-gray-200 rounded-2xl py-4 px-3 max-w-64", className)}>
       <div className="flex items-center" id="header">
-        <img src={profile_picture} alt="logo" height={42} width={42} className="object-cover border rounded-full aspect-square block bg-white" />
+        <img src={profile_picture} alt="logo" height={36} width={36} className="object-cover border rounded-full aspect-square block bg-white" />
         <p className="text-sm font-semibold text-foreground ml-2 mr-8">{name}</p>
       </div>
       <div className="mt-3 rounded-xl flex flex-col" id="image">
@@ -16,7 +16,7 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
             <CarouselContent className="items-start">
               {media.map((item, index) => (
                 <CarouselItem key={index}>
-                  <img src={item} alt="" className="rounded-t-xl w-full h-auto block object-cover" />
+                  <img src={item} alt="" className="rounded-t-xl w-full h-64 block object-cover" />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -25,7 +25,7 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
           </Carousel>
         ) : (
           <div className="w-full">
-            <img src={media[0]} alt="" className="rounded-t-xl w-full h-auto block object-cover" />
+            <img src={media[0]} alt="" className="rounded-t-xl w-full h-64 block object-cover" />
           </div>
         )}
         <div className="rounded-b-2xl flex items-center justify-between px-4 pt-1.5 pb-2 bg-black">
@@ -41,7 +41,7 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
       <div id="caption" className="px-1">
         <Tooltip>
           <TooltipTrigger asChild>
-            <p className={cn("text-sm text-black/70 mt-3.5 whitespace-pre-line cursor-pointer line-clamp-4")}>
+            <p className={cn("text-xs text-black/70 mt-3.5 whitespace-pre-line cursor-pointer line-clamp-4")}>
               <span dangerouslySetInnerHTML={{ __html: content.body }} />
             </p>
           </TooltipTrigger>
