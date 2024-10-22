@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Input } from "@/components/ui/input";
+import { Typewriter } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
-import { ArrowUpIcon, PaperclipIcon, XIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
-import { Typewriter } from "@/components/typewriter";
+import { ArrowUpIcon, PaperclipIcon, XIcon } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Message = TextMessage | ImageMessage | CustomMessage;
 
@@ -67,8 +67,14 @@ export function ChatScreen() {
         wait: 1500,
       },
       {
-        text: "Here are the generate meta adcopies",
-        body: <div></div>,
+        text: "Here are the generated meta adcopies",
+        body: (
+          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+            <div className="w-64 bg-red-100 h-96 shrink-0 rounded-xl">adcopy 1</div>
+            <div className="w-64 bg-red-100 h-96 shrink-0 rounded-xl">adcopy 2</div>
+            <div className="w-64 bg-red-100 h-96 shrink-0 rounded-xl">adcopy 3</div>
+          </div>
+        ),
         type: "custom",
         wait: 5000,
       },
@@ -84,8 +90,8 @@ export function ChatScreen() {
         wait: 3000,
       },
       {
-        text: "Here are the generate google adcopies",
-        body: <div></div>,
+        text: "Here are the generated google adcopies",
+        body: <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden"></div>,
         type: "custom",
         wait: 3000,
       },
@@ -122,8 +128,8 @@ export function ChatScreen() {
         wait: 5000,
       },
       {
-        text: "Here are the latest ads from Nike",
-        body: <div></div>,
+        text: "Here are the latest ads from Adidas",
+        body: <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden"></div>,
         type: "custom",
         wait: 3000,
       },
@@ -226,7 +232,12 @@ function ChatBubble(message: Message) {
 function UserChatBubble({ message }: { message: Message }) {
   switch (message.type) {
     case "text":
-      return <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tr-none px-5 py-3", message.sender === "user" ? "self-end" : "self-start")}>{message.text}</div>;
+      return (
+        <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tr-none px-5 py-3", message.sender === "user" ? "self-end" : "self-start")}>
+          <span>{message.text}</span>
+        </div>
+      );
+
     case "image":
       return (
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
@@ -238,6 +249,7 @@ function UserChatBubble({ message }: { message: Message }) {
           <img src={message.image} className="h-40 w-auto" />
         </div>
       );
+
     case "custom":
       return (
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
@@ -264,20 +276,35 @@ function AgentChatBubble({ message }: { message: Message }) {
           <Typewriter text={message.text} />
         </div>
       );
+
     case "image":
       return (
-        <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3", message.sender === "user" ? "self-end" : "self-start")}>
-          {message.text ? <Typewriter onComplete={() => setComplete(true)} text={message.text} /> : null}
-          {isComplete ? <img src={message.image} className="h-40 w-auto animate-in fade-in" /> : null}
+        <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
+          {message.text ? (
+            <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 w-fit")}>
+              <Typewriter onComplete={() => setComplete(true)} text={message.text} />
+            </div>
+          ) : null}
+          {isComplete ? (
+            <span className="animate-in fade-in">
+              <img src={message.image} className="h-40 w-auto" />
+            </span>
+          ) : null}
         </div>
       );
+
     case "custom":
       return (
-        <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3", message.sender === "user" ? "self-end" : "self-start")}>
-          {message.text ? <Typewriter onComplete={() => setComplete(true)} text={message.text} /> : null}
+        <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
+          {message.text ? (
+            <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 w-fit")}>
+              <Typewriter onComplete={() => setComplete(true)} text={message.text} />
+            </div>
+          ) : null}
           {isComplete ? <span className="animate-in fade-in">{message.body}</span> : null}
         </div>
       );
+
     default:
       throw new Error("Invalid message type");
   }
