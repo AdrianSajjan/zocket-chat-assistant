@@ -56,7 +56,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(8);
+  const [step, setStep] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
