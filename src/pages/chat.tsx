@@ -183,7 +183,7 @@ export function ChatScreen() {
       {
         text: "Here are the latest ads from Adidas",
         body: (
-          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+          <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
             {discoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <DiscoverAdsCard {...ads} />
