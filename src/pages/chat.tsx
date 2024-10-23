@@ -1,19 +1,20 @@
-import { GoogleDiscoverAdsCard, MetaDiscoverAdsCard } from "@/components/cards/discover-ads";
-import GoogleCreativeCard from "@/components/cards/google-creative";
-import MetaCreativeCard from "@/components/cards/meta-creative";
-import { Typewriter, TypewriterData } from "@/components/typewriter";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
-import { metaAndGoogleCampaignMetrcs, metaCampaignMetricsAndInsights } from "@/constants/campaign-metrics";
-import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
-import { keywords } from "@/constants/keywords";
-import { targeting } from "@/constants/targeting";
-import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
 import { ArrowUpIcon, CheckIcon, PaperclipIcon, XIcon } from "lucide-react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Confetti from "react-confetti";
+
+import { GoogleDiscoverAdsCard, MetaDiscoverAdsCard } from "@/components/cards/discover-ads";
+import { GoogleCreativeCard } from "@/components/cards/google-creative";
+import { MetaCreativeCard } from "@/components/cards/meta-creative";
+import { Typewriter, TypewriterData } from "@/components/typewriter";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
+import { metaAndGoogleCampaignMetrics, metaCampaignMetricsAndInsights } from "@/constants/campaign-metrics";
+import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
+import { keywords } from "@/constants/keywords";
+import { targeting } from "@/constants/targeting";
+import { cn } from "@/lib/utils";
 
 type Message = TextMessage | ImageMessage | CustomMessage;
 
@@ -121,6 +122,7 @@ export function ChatScreen() {
         wait: 3000,
         loader: "steps",
         steps: ["Generating keywords based on the product and ads"],
+        auto: true,
       },
       {
         body: { type: "p", text: "Your campaign for meta has been launched successfully 🎉 🎊" },
@@ -138,14 +140,14 @@ export function ChatScreen() {
         steps: ["Fetching the latest data for the meta campaign", "Analyzing the data to generate insights and suggestions"],
       },
       {
-        body: metaAndGoogleCampaignMetrcs,
+        body: metaAndGoogleCampaignMetrics,
         type: "custom",
         wait: 5000,
         loader: "steps",
         steps: ["Compiling the latest metrics for recent meta and google campaigns", "Analyzing the data to generate pdf report"],
       },
       {
-        body: { type: "p", text: "Here are the latest ads being run by adidas" },
+        body: { type: "p", text: "Here are the latest ads being run by Adidas for Meta" },
         animated: (
           <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
             {metaDiscoverAds.map((ads, index) => (
@@ -158,10 +160,11 @@ export function ChatScreen() {
         type: "custom",
         wait: 4000,
         loader: "steps",
-        steps: ["Fetching the latest ads from Adidas", "Compiling the top ads from Adidas"],
+        steps: ["Fetching the latest ads from Adidas for Meta", "Compiling the top ads from Adidas for Meta"],
+        auto: true,
       },
       {
-        text: "Here are the latest ads from Adidas",
+        text: "Here are the latest ads from Adidas for Google",
         body: (
           <div className="flex gap-3.5 overflow-auto w-full mt-4 scrollbar-hidden">
             {googleDiscoverAds.map((ads, index) => (
@@ -174,7 +177,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 4000,
         loader: "steps",
-        steps: ["Fetching the latest ads from Adidas", "Compiling the top ads from Adidas"],
+        steps: ["Fetching the latest ads from Adidas for Google", "Compiling the top ads from Adidas for Google"],
       },
     ];
   }, []);

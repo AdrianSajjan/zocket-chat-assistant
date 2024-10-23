@@ -171,7 +171,7 @@ export const metaCampaignMetricsAndInsights = {
   ],
 };
 
-export const metaAndGoogleCampaignMetrcs = {
+export const metaAndGoogleCampaignMetrics = {
   type: "div",
   children: [
     {

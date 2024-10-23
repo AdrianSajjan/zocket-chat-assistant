@@ -2,7 +2,7 @@ import { MetaCreativeCardProps } from "@/constants/creatives";
 import { cn, upperFirst } from "@/lib/utils";
 import { GlobeIcon } from "lucide-react";
 
-export default function MetaCreativeCard({ creative, className, brand }: MetaCreativeCardProps) {
+export function MetaCreativeCard({ creative, className, brand }: MetaCreativeCardProps) {
   const name = brand?.brand_name || "Zocket";
   const logo = brand?.brand_logo || "images/no-avatar.jpg";
 

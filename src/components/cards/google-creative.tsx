@@ -3,7 +3,7 @@ import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/compone
 import { GoogleCreativeCardProps } from "@/constants/creatives";
 import { capitalizeEachWord, cn } from "@/lib/utils";
 
-export default function GoogleCreativeCard({ headline, url, description, keywords, className }: GoogleCreativeCardProps) {
+export function GoogleCreativeCard({ headline, url, description, keywords, className }: GoogleCreativeCardProps) {
   return (
     <div className={cn("rounded-md border border-gray-200 p-4 w-80 bg-white", className)}>
       <a href={url} target="_blank" className={cn("text-md text-blue-800 leading-snug tracking-tight font-medium cursor-pointer hover:underline line-clamp-2")}>
