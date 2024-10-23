@@ -19,6 +19,7 @@ interface Steps extends Omit<Message, "sender"> {
   wait: number;
   loader: "text" | "steps";
   steps?: string[];
+  auto?: boolean;
   confetti?: boolean;
 }
 
@@ -66,7 +67,7 @@ export function ChatScreen() {
       {
         body: { type: "p", text: "Here are the generated meta adcopies" },
         animated: (
-          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden">
             {metaCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <MetaCreativeCard creative={creative.creative} brand={creative.brand} />
@@ -78,6 +79,7 @@ export function ChatScreen() {
         wait: 5000,
         loader: "steps",
         steps: ["Generating ads from the product image", "Generating text content from the product details"],
+        auto: true,
       },
       {
         body: targeting,
@@ -97,7 +99,7 @@ export function ChatScreen() {
       {
         body: { type: "p", text: "Here are the generated google adcopies" },
         animated: (
-          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden animate-in fade-in duration-500">
+          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden animate-in fade-in duration-500">
             {googleCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <GoogleCreativeCard {...creative} />
@@ -108,6 +110,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 4000,
         loader: "steps",
+        auto: true,
         steps: ["Generating adcreatives from the product image", "Generating text content from the product details"],
       },
       // {
@@ -168,7 +171,7 @@ export function ChatScreen() {
       {
         text: "Here are the latest ads from Adidas",
         body: (
-          <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+          <div className="flex gap-3.5 overflow-auto w-full mt-4 scrollbar-hidden">
             {googleDiscoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <GoogleDiscoverAdsCard {...ads} />
@@ -200,12 +203,13 @@ export function ChatScreen() {
     setLoading(true);
     setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 150);
 
-    const { wait, confetti, ...message } = steps[step];
+    const { wait, confetti, auto, ...message } = steps[step];
     const timeout = setTimeout(() => {
       setMessages((state) => [...state, { ...message, sender: "bot" } as Message]);
       setLoading(false);
       setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 150);
       if (confetti) setTimeout(() => setConfettiVisible(true), 500);
+      if (auto) setTimeout(() => setStep((state) => state + 1), 500);
     }, wait);
 
     return () => {
