@@ -51,7 +51,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
@@ -64,7 +64,7 @@ export function ChatScreen() {
   const steps: Steps[] = useMemo(() => {
     return [
       {
-        body: {},
+        body: { type: "p", text: "Here are the generated meta adcopies" },
         animated: (
           <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
             {metaCreatives.map((creative, index) => (
@@ -87,16 +87,15 @@ export function ChatScreen() {
         steps: ["Generating targeting settings based on the product and adcreatives", "Compiling the relevant settings based on the results"],
       },
       {
-        text: "Your campaign for meta has been launched successfully 🎉 🎊",
-        type: "text",
+        body: { type: "p", text: "Your campaign for meta has been launched successfully 🎉 🎊" },
+        type: "custom",
         wait: 6000,
         confetti: true,
         loader: "steps",
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
-        text: "Here are the generated google adcopies",
-        body: {},
+        body: { type: "p", text: "Here are the generated google adcopies" },
         animated: (
           <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden animate-in fade-in duration-500">
             {googleCreatives.map((creative, index) => (
@@ -111,48 +110,48 @@ export function ChatScreen() {
         loader: "steps",
         steps: ["Generating adcreatives from the product image", "Generating text content from the product details"],
       },
+      // {
+      //   text: "Here are the recommended keywords for your campaign",
+      //   body: {},
+      //   type: "custom",
+      //   wait: 3000,
+      //   loader: "steps",
+      //   steps: ["Generating keywords based on the product and ads"],
+      // },
       {
-        text: "Here are the recommended keywords for your campaign",
-        body: {},
+        body: { type: "p", text: "Your campaign for meta has been launched successfully 🎉 🎊" },
         type: "custom",
-        wait: 3000,
-        loader: "steps",
-        steps: ["Generating keywords based on the product and ads"],
-      },
-      {
-        text: "Your campaign for google has been launched successfully 🎉 🎊",
-        type: "text",
         wait: 3000,
         confetti: true,
         loader: "steps",
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
+      // {
+      //   body: (
+      //     <ul>
+      //       <li></li>
+      //       <li></li>
+      //       <li></li>
+      //       <li></li>
+      //       <li></li>
+      //     </ul>
+      //   ),
+      //   type: "custom",
+      //   wait: 5000,
+      //   loader: "steps",
+      //   steps: ["Fetching the latest data from the campaign", "Analyzing the data to generate insights"],
+      // },
+      // {
+      //   text: "Here is the generated report compiling all the latest data from your last campaign",
+      //   image: "/images/pdf-thumbnail.webp",
+      //   type: "image",
+      //   wait: 4000,
+      //   loader: "steps",
+      //   steps: ["Generating the report", "Compiling the data", "Sending the report"],
+      // },
       {
-        body: (
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        ),
-        type: "custom",
-        wait: 5000,
-        loader: "steps",
-        steps: ["Fetching the latest data from the campaign", "Analyzing the data to generate insights"],
-      },
-      {
-        text: "Here is the generated report compiling all the latest data from your last campaign",
-        image: "/images/pdf-thumbnail.webp",
-        type: "image",
-        wait: 4000,
-        loader: "steps",
-        steps: ["Generating the report", "Compiling the data", "Sending the report"],
-      },
-      {
-        text: "Here are the latest ads from Adidas",
-        body: (
+        body: { type: "p", text: "Here are the latest ads being run by adidas" },
+        animated: (
           <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
             {discoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
@@ -231,11 +230,18 @@ export function ChatScreen() {
   return (
     <section className="flex flex-col items-center h-full w-full pb-6">
       {isConfettiVisible ? <Confetti height={window.innerHeight} width={window.innerWidth} recycle={false} onConfettiComplete={() => setConfettiVisible(false)} /> : null}
-      <div id="container" ref={container} className="flex flex-col w-full my-6 flex-1 max-w-5xl overflow-auto scrollbar-hidden gap-4 px-4">
+      <div id="container" ref={container} className="flex flex-col w-full my-6 flex-1 max-w-5xl overflow-auto scrollbar-hidden gap-8 px-4">
         {messages.map((message, index) => (
           <ChatBubble key={index} {...message} />
         ))}
-        {isLoading ? <Loader type={steps[step].loader} wait={steps[step].wait} steps={steps[step].steps} /> : null}
+        {isLoading ? (
+          <div className="flex gap-4">
+            <img src="/zocket.svg" className="h-10 w-10 rounded-full" />
+            <div className="mt-5">
+              <Loader type={steps[step].loader} wait={steps[step].wait} steps={steps[step].steps} />
+            </div>
+          </div>
+        ) : null}
       </div>
       <footer className="w-full flex flex-col max-w-5xl shrink-0 px-4 gap-3">
         {media ? (
@@ -291,14 +297,19 @@ function UserChatBubble({ message }: { message: Message }) {
 }
 
 function AgentChatBubble({ message }: { message: Message }) {
-  const [isComplete] = useState(false);
+  const [isComplete] = useState(true);
 
   switch (message.type) {
     case "custom":
       return (
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
-          <Typewriter data={message.body} />
-          {message.animated ? <div className={cn("transition-opacity duration-500", isComplete ? "opacity-100" : "opacity-0")}>{message.animated}</div> : null}
+          <div className="flex gap-4">
+            <img src="/zocket.svg" className="h-10 w-10 rounded-full" />
+            <div className="flex-1 pt-5">
+              {message.body ? <Typewriter data={message.body} /> : null}
+              {message.animated ? <div className={cn("transition-opacity duration-500 animate-in fade-in", isComplete ? "opacity-100" : "opacity-0")}>{message.animated}</div> : null}
+            </div>
+          </div>
         </div>
       );
 
