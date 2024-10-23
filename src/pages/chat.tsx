@@ -200,14 +200,26 @@ export function ChatScreen() {
   }, []);
 
   useEffect(() => {
+    const element = container.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() => {
+      setTimeout(() => element.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 250);
+    });
+    observer.observe(element);
+    return () => {
+      observer.unobserve(element);
+    };
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
-    setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 100);
+    setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 150);
 
     const { wait, confetti, ...message } = steps[step];
     const timeout = setTimeout(() => {
       setMessages((state) => [...state, { ...message, sender: "bot" } as Message]);
       setLoading(false);
-      setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 100);
+      setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 150);
       if (confetti) setTimeout(() => setConfettiVisible(true), 500);
     }, wait);
 
@@ -228,7 +240,7 @@ export function ChatScreen() {
     setQuery("");
     setMedia(null);
 
-    setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 100);
+    setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 150);
     setTimeout(() => setStep((state) => state + 1), 300);
   };
 
@@ -249,7 +261,7 @@ export function ChatScreen() {
   return (
     <section className="flex flex-col items-center h-full w-full pb-6">
       {isConfettiVisible ? <Confetti height={window.innerHeight} width={window.innerWidth} recycle={false} onConfettiComplete={() => setConfettiVisible(false)} /> : null}
-      <div ref={container} className="flex flex-col w-full my-6 flex-1 max-w-5xl overflow-auto scrollbar-hidden gap-4 px-4">
+      <div id="container" ref={container} className="flex flex-col w-full my-6 flex-1 max-w-5xl overflow-auto scrollbar-hidden gap-4 px-4">
         {messages.map((message, index) => (
           <ChatBubble key={index} {...message} />
         ))}
@@ -334,11 +346,16 @@ function UserChatBubble({ message }: { message: Message }) {
 function AgentChatBubble({ message }: { message: Message }) {
   const [isComplete, setComplete] = useState(!message.text);
 
+  const handleComplete = () => {
+    if (!isComplete) setComplete(true);
+    setTimeout(() => document.getElementById("container")?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 200);
+  };
+
   switch (message.type) {
     case "text":
       return (
         <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3", message.sender === "user" ? "self-end" : "self-start")}>
-          <Typewriter text={message.text} />
+          <Typewriter onComplete={handleComplete} text={message.text} />
         </div>
       );
 
@@ -347,7 +364,7 @@ function AgentChatBubble({ message }: { message: Message }) {
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
           {message.text ? (
             <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 w-fit")}>
-              <Typewriter onComplete={() => setComplete(true)} text={message.text} />
+              <Typewriter onComplete={handleComplete} text={message.text} />
             </div>
           ) : null}
           {isComplete ? (
@@ -363,7 +380,7 @@ function AgentChatBubble({ message }: { message: Message }) {
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
           {message.text ? (
             <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 w-fit")}>
-              <Typewriter onComplete={() => setComplete(true)} text={message.text} />
+              <Typewriter onComplete={handleComplete} text={message.text} />
             </div>
           ) : null}
           {isComplete ? <span className="animate-in fade-in duration-500">{message.body}</span> : null}
