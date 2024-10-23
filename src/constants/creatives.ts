@@ -21,7 +21,8 @@ export const metaCreatives: MetaCreativeCardProps[] = [
       cta: "learn_more",
     },
     brand: {
-      brand_name: "Facebook",
+      brand_name: "Nike",
+      brand_logo: "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
     },
   },
   {
@@ -32,7 +33,8 @@ export const metaCreatives: MetaCreativeCardProps[] = [
       cta: "shop_now",
     },
     brand: {
-      brand_name: "Instagram",
+      brand_name: "Nike",
+      brand_logo: "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
     },
   },
   {
@@ -43,7 +45,8 @@ export const metaCreatives: MetaCreativeCardProps[] = [
       cta: "sign_up",
     },
     brand: {
-      brand_name: "Twitter",
+      brand_name: "Nike",
+      brand_logo: "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
     },
   },
 ];
@@ -90,8 +93,8 @@ export interface DiscoverAdsCardProps {
 
 export const discoverAds: DiscoverAdsCardProps[] = [
   {
-    profile_picture: "/images/no-avatar.jpg",
-    name: "John Doe",
+    profile_picture: "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
+    name: "Adidas",
     media: ["/creatives/creative.jpeg", "/creatives/creative.jpeg", "/creatives/creative.jpeg"],
     content: {
       url: "https://www.example.com",
@@ -100,8 +103,8 @@ export const discoverAds: DiscoverAdsCardProps[] = [
     },
   },
   {
-    profile_picture: "/images/no-avatar.jpg",
-    name: "John Doe",
+    profile_picture: "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
+    name: "Adidas",
     media: ["/creatives/creative.jpeg", "/creatives/creative.jpeg", "/creatives/creative.jpeg"],
     content: {
       url: "https://www.example.com",
@@ -110,8 +113,8 @@ export const discoverAds: DiscoverAdsCardProps[] = [
     },
   },
   {
-    profile_picture: "/images/no-avatar.jpg",
-    name: "John Doe",
+    profile_picture: "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
+    name: "Adidas",
     media: ["/creatives/creative.jpeg", "/creatives/creative.jpeg", "/creatives/creative.jpeg"],
     content: {
       url: "https://www.example.com",
