@@ -68,7 +68,7 @@ export function ChatScreen() {
   const steps: Steps[] = useMemo(() => {
     return [
       {
-        body: { type: "p", text: "Here are the generated meta adcopies" },
+        body: { type: "p", text: "Here are the generated Meta Ads" },
         animated: (
           <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden">
             {metaCreatives.map((creative, index) => (
@@ -92,7 +92,7 @@ export function ChatScreen() {
         steps: ["Generating targeting settings based on the product and adcreatives", "Compiling the relevant settings based on the results"],
       },
       {
-        body: { type: "p", text: "Your campaign for meta has been launched successfully 🎉 🎊" },
+        body: { type: "p", text: "Your campaign for Meta has been launched successfully 🎉 🎊" },
         type: "custom",
         wait: 6000,
         confetti: true,
@@ -100,7 +100,7 @@ export function ChatScreen() {
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
-        body: { type: "p", text: "Here are the generated google adcopies" },
+        body: { type: "p", text: "Here are the generated Google Ads" },
         animated: (
           <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden animate-in fade-in duration-500">
             {googleCreatives.map((creative, index) => (
@@ -125,7 +125,7 @@ export function ChatScreen() {
         auto: true,
       },
       {
-        body: { type: "p", text: "Your campaign for meta has been launched successfully 🎉 🎊" },
+        body: { type: "p", text: "Your campaign for Google has been launched successfully 🎉 🎊" },
         type: "custom",
         wait: 3000,
         confetti: true,
@@ -137,14 +137,14 @@ export function ChatScreen() {
         type: "custom",
         wait: 5000,
         loader: "steps",
-        steps: ["Fetching the latest data for the meta campaign", "Analyzing the data to generate insights and suggestions"],
+        steps: ["Fetching the latest data for the Meta campaign", "Analyzing the data to generate insights and suggestions"],
       },
       {
         body: metaAndGoogleCampaignMetrics,
         type: "custom",
         wait: 5000,
         loader: "steps",
-        steps: ["Compiling the latest metrics for recent meta and google campaigns", "Analyzing the data to generate pdf report"],
+        steps: ["Compiling the latest metrics for recent Meta and Google campaigns", "Analyzing the data to generate pdf report"],
       },
       {
         body: { type: "p", text: "Here are the latest ads being run by Adidas for Meta" },
