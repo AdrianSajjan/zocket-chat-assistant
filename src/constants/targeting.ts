@@ -46,7 +46,7 @@ export const targeting = {
                         },
                         {
                           type: "span",
-                          text: " 18-45",
+                          text: " 18-30",
                         },
                       ],
                     },
@@ -82,7 +82,7 @@ export const targeting = {
                         },
                         {
                           type: "span",
-                          text: " New York",
+                          text: " Major US cities (New York City, Los Angeles, Chicago, Atlanta)",
                         },
                       ],
                     },
@@ -100,7 +100,7 @@ export const targeting = {
                         },
                         {
                           type: "span",
-                          text: " Sneakers, Nike, Sports, Fashion, Winter sports, Outdoor activities, Streetwear, Lifestyle brands, Urban fashion",
+                          text: " Streetwear, Urban Fashion, Graffiti, Skateboarding, Music Festivals",
                         },
                       ],
                     },

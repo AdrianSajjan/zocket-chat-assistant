@@ -3,7 +3,7 @@ export const keywords = {
   children: [
     {
       type: "p",
-      text: "Core Keywords related to Nike winter shoes for targeting and marketing purposes:",
+      text: "We've harnessed AI's predictive capabilities to craft keyword strategies around Nike sneakers, optimizing your ad bids to capture high-converting traffic and drive measurable ROI from search campaigns.",
     },
     {
       type: "ol",

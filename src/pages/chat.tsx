@@ -87,7 +87,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 5000,
         loader: "steps",
-        steps: ["Generating ads from the product image", "Generating text content from the product details"],
+        steps: ["Analysing your product image", "Removing background", "Generating Background", "Crafting Ad Copies"],
         auto: true,
       },
       {
@@ -95,7 +95,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 3000,
         loader: "steps",
-        steps: ["Generating targeting settings based on the product and ads", "Compiling the relevant settings based on the results"],
+        steps: ["Finding the right user persona", "Generating targeting cohorts"],
       },
       {
         body: {
@@ -126,14 +126,14 @@ export function ChatScreen() {
         wait: 4000,
         loader: "steps",
         auto: true,
-        steps: ["Generating adcreatives from the product image", "Generating text content from the product details"],
+        steps: ["Identifying Key features", "Generating headlines", "Optimizing Description for Relevance"],
       },
       {
         body: keywords,
         type: "custom",
         wait: 3000,
         loader: "steps",
-        steps: ["Generating keywords based on the product and ads"],
+        steps: ["Generating  keyword clusters", "Filtering negative keywords", "Picking high converting keywords"],
         auto: true,
       },
       {
@@ -174,7 +174,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 5000,
         loader: "steps",
-        steps: ["Compiling the data into a comprehensive report in PDF format", "Emailing the report to the stakeholders and relevant parties"],
+        steps: ["Fetching campaign data from all ad platforms", "Summarising data with key performance indicators", "Compiling into a PDF report"],
       },
       {
         body: {
@@ -193,7 +193,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 4000,
         loader: "steps",
-        steps: ["Fetching the latest ads from Adidas for Meta", "Compiling the top ads from Adidas for Meta"],
+        steps: ["Identifying right competitor", "Fetching the latest ads from Adidas for Meta", " Compiling the top ads from Adidas for Meta"],
         auto: true,
       },
       {
