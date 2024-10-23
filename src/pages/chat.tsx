@@ -1,5 +1,5 @@
 import { useSearch } from "@tanstack/react-router";
-import { ArrowUpIcon, CheckIcon, PaperclipIcon, XIcon } from "lucide-react";
+import { ArrowUpIcon, CheckIcon, DownloadIcon, PaperclipIcon, XIcon } from "lucide-react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Confetti from "react-confetti";
 
@@ -15,6 +15,7 @@ import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } fr
 import { keywords } from "@/constants/keywords";
 import { targeting } from "@/constants/targeting";
 import { cn } from "@/lib/utils";
+import { reports } from "@/constants/reports";
 
 type Message = TextMessage | ImageMessage | CustomMessage;
 
@@ -55,7 +56,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(8);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
@@ -159,7 +160,24 @@ export function ChatScreen() {
         steps: ["Fetching the latest data for the Google campaign", "Analyzing the data to generate insights and suggestions"],
       },
       {
-        body: { type: "p", text: "Here are the latest ads being run by Adidas for Meta" },
+        body: reports,
+        animated: (
+          <div className="w-fit rounded-xl border pl-2 pr-4 py-2 flex items-center">
+            <img src="/images/pdf-thumbnail.webp" className="w-12 h-auto" />
+            <span className="text-sm font-medium ml-2.5 mr-3.5">Performance Report for Google and Meta.pdf</span>
+            <DownloadIcon className="text-blue-600" size={20} />
+          </div>
+        ),
+        type: "custom",
+        wait: 5000,
+        loader: "steps",
+        steps: ["Compiling the data into a comprehensive report in PDF format", "Emailing the report to the stakeholders and relevant parties"],
+      },
+      {
+        body: {
+          type: "p",
+          text: "Here are the latest ads being run by Adidas for Meta",
+        },
         animated: (
           <div className="flex gap-3.5 overflow-auto w-full max-w-4xl mt-4 scrollbar-hidden">
             {metaDiscoverAds.map((ads, index) => (
@@ -176,7 +194,10 @@ export function ChatScreen() {
         auto: true,
       },
       {
-        body: { type: "p", text: "Here are the latest ads being run by Adidas for Google" },
+        body: {
+          type: "p",
+          text: "Here are the latest ads being run by Adidas for Google",
+        },
         animated: (
           <div className="flex gap-3.5 overflow-auto w-full max-w-4xl mt-4 scrollbar-hidden">
             {googleDiscoverAds.map((ads, index) => (
