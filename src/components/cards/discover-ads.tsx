@@ -1,9 +1,10 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { DiscoverAdsCardProps } from "@/constants/creatives";
+import { GoogleDiscoverAdsCardProps, MetaDiscoverAdsCardProps } from "@/constants/creatives";
 import { cn, upperFirst } from "@/lib/utils";
+import ReactStars from "react-rating-stars-component";
 
-export function DiscoverAdsCard({ profile_picture, name, media, content, className }: DiscoverAdsCardProps) {
+export function MetaDiscoverAdsCard({ profile_picture, name, media, content, className }: MetaDiscoverAdsCardProps) {
   return (
     <div className={cn("border bg-white border-gray-200 rounded-2xl py-4 px-3 max-w-xs", className)}>
       <div className="flex items-center" id="header">
@@ -16,7 +17,7 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
             <CarouselContent className="items-start">
               {media.map((item, index) => (
                 <CarouselItem key={index}>
-                  <img src={item} alt="" className="rounded-t-xl w-full h-64 block object-cover" />
+                  <img src={item} alt="" className="rounded-t-xl w-full h-72 block object-cover" />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -25,7 +26,7 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
           </Carousel>
         ) : (
           <div className="w-full">
-            <img src={media[0]} alt="" className="rounded-t-xl w-full h-64 block object-cover" />
+            <img src={media[0]} alt="" className="rounded-t-xl w-full h-72 block object-cover" />
           </div>
         )}
         <div className="rounded-b-xl flex items-center justify-between px-4 pt-1 pb-1.5 bg-black">
@@ -41,7 +42,7 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
       <div id="caption" className="px-1">
         <Tooltip>
           <TooltipTrigger asChild>
-            <p className={cn("text-sm text-black/70 mt-3.5 whitespace-pre-line cursor-pointer line-clamp-4")}>
+            <p className={cn("text-sm text-black/70 mt-3.5 whitespace-pre-line cursor-pointer line-clamp-3")}>
               <span dangerouslySetInnerHTML={{ __html: content.body }} />
             </p>
           </TooltipTrigger>
@@ -50,6 +51,61 @@ export function DiscoverAdsCard({ profile_picture, name, media, content, classNa
             <span dangerouslySetInnerHTML={{ __html: content.body }} />
           </TooltipContent>
         </Tooltip>
+      </div>
+    </div>
+  );
+}
+
+export function GoogleDiscoverAdsCard({ profile_picture, name, headline, url, description, media, rating, no_of_reviews, keywords, className }: GoogleDiscoverAdsCardProps) {
+  return (
+    <div className={cn("max-w-xs rounded-md border border-gray-200 p-4 bg-white", className)}>
+      <span className="text-xs font-medium text-black">Sponsored</span>
+      <div className="flex items-center gap-2" id="header">
+        <img src={profile_picture} alt="logo" height={36} width={36} className="object-contain border rounded-full aspect-square block bg-white" />
+        <div className="flex flex-col gap-px items-start">
+          <p className="text-sm font-semibold text-black mb-0">{name}</p>
+          <span className="text-xs text-foreground/60">{url}</span>
+        </div>
+      </div>
+      <a href={url} target="_blank" className={cn("text-md text-blue-800 leading-snug tracking-tight font-medium cursor-pointer hover:underline line-clamp-2 mt-2")}>
+        {headline}
+      </a>
+      {media ? <img src={media} alt="" className="my-4 w-full h-64 aspect-square rounded-md overflow-hidden object-cover" /> : null}
+      <div className="flex flex-col gap-2 items-start overflow-hidden">
+        <Tooltip>
+          <TooltipTrigger>
+            <p className="text-sm text-left text-black/50 leading-snug line-clamp-3">{description}</p>
+          </TooltipTrigger>
+          <TooltipContent className="max-w-sm">
+            <TooltipArrow />
+            <span dangerouslySetInnerHTML={{ __html: description }} />
+          </TooltipContent>
+        </Tooltip>
+        {rating ? (
+          <div className="flex flex-col gap-px">
+            <span className="text-sm text-black/80">Rating for {name}</span>
+            <span className="text-sm font-medium text-foreground flex items-center gap-px">
+              {rating}
+              <ReactStars
+                count={5}
+                value={rating}
+                size={16}
+                isHalf={true}
+                activeColor="#ffd700"
+              />
+              ({no_of_reviews})
+            </span>
+          </div>
+        ) : null}
+        {keywords ? (
+          <div className="w-max flex flex-shrink-0 gap-2 overflow-x-auto scrollbar-hidden" onWheel={(e) => e.preventDefault()}>
+            {keywords.map((keyword, index) => (
+              <span key={index} className="w-fit text-sm px-1 py-0.5 border border-gray-200 text-blue-600 rounded-sm">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );
