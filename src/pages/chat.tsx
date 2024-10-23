@@ -1,7 +1,8 @@
+import Confetti from "react-confetti";
+
 import { useSearch } from "@tanstack/react-router";
 import { ArrowUpIcon, CheckIcon, DownloadIcon, PaperclipIcon, XIcon } from "lucide-react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
-import Confetti from "react-confetti";
 
 import { GoogleDiscoverAdsCard, MetaDiscoverAdsCard } from "@/components/cards/discover-ads";
 import { GoogleCreativeCard } from "@/components/cards/google-creative";
@@ -10,11 +11,12 @@ import { Typewriter, TypewriterData } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
+
+import { cn } from "@/lib/utils";
 import { googleCampaignMetricsAndInsights, metaCampaignMetricsAndInsights } from "@/constants/campaign-metrics";
 import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
 import { keywords } from "@/constants/keywords";
 import { targeting } from "@/constants/targeting";
-import { cn } from "@/lib/utils";
 import { reports } from "@/constants/reports";
 
 type Message = TextMessage | ImageMessage | CustomMessage;
@@ -93,7 +95,7 @@ export function ChatScreen() {
         type: "custom",
         wait: 3000,
         loader: "steps",
-        steps: ["Generating targeting settings based on the product and adcreatives", "Compiling the relevant settings based on the results"],
+        steps: ["Generating targeting settings based on the product and ads", "Compiling the relevant settings based on the results"],
       },
       {
         body: {
@@ -151,6 +153,7 @@ export function ChatScreen() {
         wait: 5000,
         loader: "steps",
         steps: ["Fetching the latest data for the Meta campaign", "Analyzing the data to generate insights and suggestions"],
+        auto: true,
       },
       {
         body: googleCampaignMetricsAndInsights,
