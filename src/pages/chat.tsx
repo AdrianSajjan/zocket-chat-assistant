@@ -10,7 +10,7 @@ import { Typewriter, TypewriterData } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
-import { metaAndGoogleCampaignMetrics, metaCampaignMetricsAndInsights } from "@/constants/campaign-metrics";
+import { googleCampaignMetricsAndInsights, metaCampaignMetricsAndInsights } from "@/constants/campaign-metrics";
 import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
 import { keywords } from "@/constants/keywords";
 import { targeting } from "@/constants/targeting";
@@ -152,11 +152,11 @@ export function ChatScreen() {
         steps: ["Fetching the latest data for the Meta campaign", "Analyzing the data to generate insights and suggestions"],
       },
       {
-        body: metaAndGoogleCampaignMetrics,
+        body: googleCampaignMetricsAndInsights,
         type: "custom",
         wait: 5000,
         loader: "steps",
-        steps: ["Compiling the latest metrics for recent Meta and Google campaigns", "Analyzing the data to generate pdf report"],
+        steps: ["Fetching the latest data for the Google campaign", "Analyzing the data to generate insights and suggestions"],
       },
       {
         body: { type: "p", text: "Here are the latest ads being run by Adidas for Meta" },

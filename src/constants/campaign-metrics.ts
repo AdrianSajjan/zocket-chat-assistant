@@ -264,223 +264,290 @@ export const metaCampaignMetricsAndInsights = {
         },
       ],
     },
+    {
+      type: "p",
+      children: [
+        {
+          type: "span",
+          text: "By implementing these suggestions, you can further optimize your campaigns, improve performance, and achieve better results.",
+        },
+      ],
+    },
   ],
 };
 
-export const metaAndGoogleCampaignMetrics = {
+export const googleCampaignMetricsAndInsights = {
   type: "div",
   children: [
     {
-      type: "h2",
-      text: "Google Ads Campaign Metrics",
-    },
-    {
       type: "table",
-      className: "border-collapse border border-gray-300 w-full",
+      styles: {
+        borderCollapse: "collapse",
+        width: "100%",
+        marginBottom: "1.5rem",
+      },
       children: [
         {
-          type: "thead",
+          type: "tr",
           children: [
             {
-              type: "tr",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
                 {
-                  type: "th",
-                  className: "border border-gray-300 p-2",
-                  text: "Metric",
-                },
-                {
-                  type: "th",
-                  className: "border border-gray-300 p-2",
-                  text: "Value",
+                  type: "strong",
+                  text: "Ad spends",
                 },
               ],
+            },
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "$28,214",
             },
           ],
         },
         {
-          type: "tbody",
+          type: "tr",
           children: [
             {
-              type: "tr",
-              className: "bg-gray-100",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Impressions" },
-                { type: "td", className: "border border-gray-300 p-2", text: "512,345" },
+                {
+                  type: "strong",
+                  text: "Results",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-white",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "628",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Clicks" },
-                { type: "td", className: "border border-gray-300 p-2", text: "4,987" },
+                {
+                  type: "strong",
+                  text: "Cost per result",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-gray-100",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "$44.92",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Click-Through Rate (CTR)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "0.973%" },
+                {
+                  type: "strong",
+                  text: "CTR",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-white",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "11.16%",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost Per Click (CPC)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹15.23" },
+                {
+                  type: "strong",
+                  text: "Impressions",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-gray-100",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "42,711",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹76,123.51" },
+                {
+                  type: "strong",
+                  text: "CPC",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-white",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "$1.22",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Conversions" },
-                { type: "td", className: "border border-gray-300 p-2", text: "489" },
+                {
+                  type: "strong",
+                  text: "Clicks",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Conversion Rate" },
-                { type: "td", className: "border border-gray-300 p-2", text: "9.81%" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-white",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost Per Acquisition (CPA)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹155.57" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Return On Ad Spend (ROAS)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "3.34" },
-              ],
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "23,126",
             },
           ],
         },
       ],
     },
     {
-      type: "h2",
-      text: "Meta Ads Campaign Metrics",
-    },
-    {
-      type: "table",
-      className: "border-collapse border border-gray-300 w-full",
+      type: "p",
       children: [
         {
-          type: "thead",
+          type: "strong",
+          text: "Google Search Ads Campaign",
+        },
+      ],
+    },
+    {
+      type: "ul",
+      styles: {
+        listStyleType: "disc",
+        paddingLeft: "1.25rem",
+        marginTop: "0.5rem",
+      },
+      children: [
+        {
+          type: "li",
           children: [
             {
-              type: "tr",
-              children: [
-                {
-                  type: "th",
-                  className: "border border-gray-300 p-2",
-                  text: "Metric",
-                },
-                {
-                  type: "th",
-                  className: "border border-gray-300 p-2",
-                  text: "Value",
-                },
-              ],
+              type: "strong",
+              text: "Change bids",
+            },
+            {
+              type: "span",
+              text: ": Identify keywords with high CPCs and low result yielding, adjust the bids so that it does not consume whole of the budget.",
             },
           ],
         },
         {
-          type: "tbody",
+          type: "li",
           children: [
             {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Impressions" },
-                { type: "td", className: "border border-gray-300 p-2", text: "1,023,456" },
-              ],
+              type: "strong",
+              text: "Ad extensions",
             },
             {
-              type: "tr",
-              className: "bg-white",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Clicks" },
-                { type: "td", className: "border border-gray-300 p-2", text: "9,872" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Click-Through Rate (CTR)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "0.963%" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-white",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost Per Click (CPC)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹10.12" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹99,873.84" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-white",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Conversions" },
-                { type: "td", className: "border border-gray-300 p-2", text: "1,012" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Conversion Rate" },
-                { type: "td", className: "border border-gray-300 p-2", text: "10.25%" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-white",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost Per Acquisition (CPA)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹98.68" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Return On Ad Spend (ROAS)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "5.06" },
-              ],
+              type: "span",
+              text: ": Use ad extensions like sitelinks, callouts, and structured snippets to provide more information and encourage clicks. This increases CTR by 15%.",
             },
           ],
+        },
+        {
+          type: "li",
+          children: [
+            {
+              type: "strong",
+              text: "Negative keywords",
+            },
+            {
+              type: "span",
+              text: ": Add negative keywords to exclude irrelevant search terms and improve ad relevance.",
+            },
+          ],
+        },
+        {
+          type: "li",
+          children: [
+            {
+              type: "strong",
+              text: "Add new keywords",
+            },
+            {
+              type: "span",
+              text: ": Keep updating new keywords to your campaign to keep exploring new opportunities. Include relevant search terms of your campaign to your keywords.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "p",
+      children: [
+        {
+          type: "span",
+          text: "By implementing these suggestions, you can further optimize your campaigns, improve performance, and achieve better results.",
         },
       ],
     },
