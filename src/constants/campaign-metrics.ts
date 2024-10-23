@@ -266,6 +266,9 @@ export const metaCampaignMetricsAndInsights = {
     },
     {
       type: "p",
+      styles: {
+        marginTop: "1.5rem",
+      },
       children: [
         {
           type: "span",
@@ -544,6 +547,9 @@ export const googleCampaignMetricsAndInsights = {
     },
     {
       type: "p",
+      styles: {
+        marginTop: "1.5rem",
+      },
       children: [
         {
           type: "span",
