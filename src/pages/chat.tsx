@@ -4,17 +4,20 @@ import MetaCreativeCard from "@/components/cards/meta-creative";
 import { Typewriter } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { discoverAds, googleCreatives, metaCreatives } from "@/constants/creatives";
 import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
-import { ArrowUpIcon, PaperclipIcon, XIcon } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowUpIcon, CheckIcon, PaperclipIcon, XIcon } from "lucide-react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Confetti from "react-confetti";
 
 type Message = TextMessage | ImageMessage | CustomMessage;
 
 interface Steps extends Omit<Message, "sender"> {
   wait: number;
+  loader: "text" | "steps";
+  steps?: string[];
   confetti?: boolean;
 }
 
@@ -46,7 +49,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(4);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
@@ -62,21 +65,25 @@ export function ChatScreen() {
         text: "What is the name of the product you want to advertise?",
         type: "text",
         wait: 1500,
+        loader: "text",
       },
       {
         text: "What is the description of the product you want to advertise?",
         type: "text",
         wait: 1000,
+        loader: "text",
       },
       {
         text: "What is the price of the product you want to advertise?",
         type: "text",
         wait: 1000,
+        loader: "text",
       },
       {
         text: "Provide the image of the product you want to advertise",
         type: "text",
         wait: 1000,
+        loader: "text",
       },
       {
         text: "Here are the generated meta adcopies",
@@ -91,18 +98,24 @@ export function ChatScreen() {
         ),
         type: "custom",
         wait: 5000,
+        loader: "steps",
+        steps: ["Generating ads from the product image", "Generating text content from the product details"],
       },
       {
         text: "Here are the recommended settings for targeting",
         body: <div></div>,
         type: "custom",
         wait: 3000,
+        loader: "steps",
+        steps: ["Generating targeting settings based on the product and adcreatives"],
       },
       {
         text: "Your campaign for meta has been launched successfully 🎉 🎊",
         type: "text",
-        wait: 3000,
+        wait: 6000,
         confetti: true,
+        loader: "steps",
+        steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
         text: "Here are the generated google adcopies",
@@ -116,19 +129,25 @@ export function ChatScreen() {
           </div>
         ),
         type: "custom",
-        wait: 3000,
+        wait: 4000,
+        loader: "steps",
+        steps: ["Generating adcreatives from the product image", "Generating text content from the product details"],
       },
       {
         text: "Here are the recommended keywords for your campaign",
         body: <div></div>,
         type: "custom",
         wait: 3000,
+        loader: "steps",
+        steps: ["Generating keywords based on the product and ads"],
       },
       {
         text: "Your campaign for google has been launched successfully 🎉 🎊",
         type: "text",
         wait: 3000,
         confetti: true,
+        loader: "steps",
+        steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
         text: "Here is how your latest campaign is performing",
@@ -150,6 +169,16 @@ export function ChatScreen() {
         ),
         type: "custom",
         wait: 5000,
+        loader: "steps",
+        steps: ["Fetching the latest data from the campaign", "Analyzing the data to generate insights"],
+      },
+      {
+        text: "Here is the generated report compiling all the latest data from your last campaign",
+        image: "/images/pdf-thumbnail.webp",
+        type: "image",
+        wait: 4000,
+        loader: "steps",
+        steps: ["Generating the report", "Compiling the data", "Sending the report"],
       },
       {
         text: "Here are the latest ads from Adidas",
@@ -163,7 +192,9 @@ export function ChatScreen() {
           </div>
         ),
         type: "custom",
-        wait: 3000,
+        wait: 4000,
+        loader: "steps",
+        steps: ["Fetching the latest ads from Adidas", "Compiling the top ads from Adidas"],
       },
     ];
   }, []);
@@ -222,7 +253,7 @@ export function ChatScreen() {
         {messages.map((message, index) => (
           <ChatBubble key={index} {...message} />
         ))}
-        {isLoading ? <Thinking /> : null}
+        {isLoading ? <Loader type={steps[step].loader} wait={steps[step].wait} steps={steps[step].steps} /> : null}
       </div>
       <footer className="w-full flex flex-col max-w-5xl shrink-0 px-4 gap-3">
         {media ? (
@@ -320,7 +351,7 @@ function AgentChatBubble({ message }: { message: Message }) {
             </div>
           ) : null}
           {isComplete ? (
-            <span className="animate-in fade-in">
+            <span className="animate-in fade-in duration-500">
               <img src={message.image} className="h-40 w-auto" />
             </span>
           ) : null}
@@ -335,7 +366,7 @@ function AgentChatBubble({ message }: { message: Message }) {
               <Typewriter onComplete={() => setComplete(true)} text={message.text} />
             </div>
           ) : null}
-          {isComplete ? <span className="animate-in fade-in">{message.body}</span> : null}
+          {isComplete ? <span className="animate-in fade-in duration-500">{message.body}</span> : null}
         </div>
       );
 
@@ -344,7 +375,18 @@ function AgentChatBubble({ message }: { message: Message }) {
   }
 }
 
-function Thinking() {
+function Loader({ type, wait, steps }: { type: "text" | "steps"; wait: number; steps?: string[] }) {
+  switch (type) {
+    case "text":
+      return <ThinkingLoader />;
+    case "steps":
+      return <StepsLoader wait={wait} steps={steps || []} />;
+    default:
+      throw new Error("Invalid loader type");
+  }
+}
+
+function ThinkingLoader() {
   const [dots, setDots] = useState(1);
 
   useEffect(() => {
@@ -359,6 +401,42 @@ function Thinking() {
       <span>Thinking</span>
       {Array.from({ length: dots }).map((_, index) => (
         <span key={index}>.</span>
+      ))}
+    </div>
+  );
+}
+
+function StepsLoader({ steps, wait }: { steps: string[]; wait: number }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (index <= steps.length) {
+      timeout = setTimeout(() => {
+        setIndex((state) => state + 1);
+      }, wait / steps.length - 100);
+    }
+    return () => clearTimeout(timeout);
+  }, [steps, wait, index]);
+
+  return (
+    <div className="text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 self-start flex flex-col gap-2">
+      {steps.map((step, idx) => (
+        <Fragment key={idx}>
+          <div className="flex items-center gap-1.5">
+            {idx === index ? (
+              <Spinner />
+            ) : idx < index ? (
+              <span className="h-6 w-6 rounded-full bg-green-600 grid place-items-center">
+                <CheckIcon color="white" size={14} strokeWidth={2.5} />
+              </span>
+            ) : (
+              <span className="h-6 w-6 rounded-full border-2 border-gray-200" />
+            )}
+            <p className="text-sm">{step}</p>
+          </div>
+          {idx < steps.length - 1 ? <div className="bg-gray-300 w-0.5 h-4 ml-2.5" /> : null}
+        </Fragment>
       ))}
     </div>
   );
