@@ -100,7 +100,16 @@ export function ChatScreen() {
       {
         body: {
           type: "p",
-          text: "Your Meta campaign has been successfully launched and fully optimized for maximum performance 🎉 🎊. Targeting has been fine-tuned to reach your ideal audience, and ad placements have been strategically selected. We're monitoring real-time metrics to ensure continued success!",
+          children: [
+            {
+              type: "strong",
+              text: "Your Meta campaign has been successfully launched and optimized for peak performance 🎉 🎊.",
+            },
+            {
+              type: "span",
+              text: " Targeting has been fine-tuned to reach your ideal audience, and ad placements have been strategically selected. We're monitoring real-time metrics to ensure continued success!",
+            },
+          ],
         },
         type: "custom",
         wait: 6000,
@@ -133,13 +142,22 @@ export function ChatScreen() {
         type: "custom",
         wait: 3000,
         loader: "steps",
-        steps: ["Generating  keyword clusters", "Filtering negative keywords", "Picking high converting keywords"],
+        steps: ["Generating keyword clusters", "Filtering negative keywords", "Picking high converting keywords"],
         auto: true,
       },
       {
         body: {
           type: "p",
-          text: "Your Google campaign has been successfully launched and optimized for peak performance 🎉 🎊. Keywords have been carefully selected to match user intent, and bids are set to maximize visibility. We're actively monitoring performance to ensure the best possible results!",
+          children: [
+            {
+              type: "strong",
+              text: "Your Google campaign has been successfully launched and optimized for peak performance 🎉 🎊.",
+            },
+            {
+              type: "span",
+              text: " Keywords have been meticulously selected to match user intent, and bids are optimized to maximize visibility. We're actively monitoring performance to ensure the best possible results!",
+            },
+          ],
         },
         type: "custom",
         wait: 3000,
