@@ -3,6 +3,7 @@ export interface MetaCreativeCardProps {
     caption: string;
     creative: string;
     headline: string;
+    subheadline: string;
     cta: string;
   };
   className?: string;
@@ -15,38 +16,44 @@ export interface MetaCreativeCardProps {
 export const metaCreatives: MetaCreativeCardProps[] = [
   {
     creative: {
-      caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.",
-      creative: "/creatives/creative.jpeg",
-      headline: "Lorem ipsum dolor sit amet",
-      cta: "learn_more",
+      caption:
+        "Step up your game with the timeless Nike Air Force 1. Classic design meets all-day comfort, giving you the perfect blend of street style and performance Geyours now and make every step count! #AirForcel #NikeStyle",
+      creative: "/creatives/Nike-Air-force-1.png",
+      headline: "Classic Comfort",
+      subheadline: "It's the shoe for occasion",
+      cta: "buy_more",
     },
     brand: {
       brand_name: "Nike",
-      brand_logo: "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
+      brand_logo: "/creatives/Nike-Logo.png",
     },
   },
   {
     creative: {
-      caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.",
-      creative: "/creatives/creative.jpeg",
-      headline: "Lorem ipsum dolor sit amet",
-      cta: "shop_now",
+      caption:
+        "Elevate your look with the legendary Nike Air Force 1 Built for comfort, designed for style-this sneaker has stood the test of time. Available now in fresh colors. Don't miss out! #IconicAFI #NikeSneakers",
+      creative: "/creatives/Nike-Air-force-2.png",
+      headline: "Legendary in every step",
+      subheadline: "Available now in fresh colors",
+      cta: "buy_now",
     },
     brand: {
       brand_name: "Nike",
-      brand_logo: "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
+      brand_logo: "/creatives/Nike-Logo.png",
     },
   },
   {
     creative: {
-      caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.",
-      creative: "/creatives/creative.jpeg",
-      headline: "Lorem ipsum dolor sit amet",
-      cta: "sign_up",
+      caption:
+        "From courts to the streets, the Nike Air Force 1 has become a fashion icon Combining comfort, durability. and classic style, it's the shoe for any occasion. Get yours today! Would you like a more specific focus on a certain style or color of the shoes?",
+      creative: "/creatives/Nike-Air-force-3.jpg",
+      headline: "All-Day Comfort",
+      subheadline: "Get yours today",
+      cta: "buy_up",
     },
     brand: {
       brand_name: "Nike",
-      brand_logo: "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
+      brand_logo: "/creatives/Nike-Logo.png",
     },
   },
 ];
@@ -93,9 +100,10 @@ export interface DiscoverAdsCardProps {
 
 export const discoverAds: DiscoverAdsCardProps[] = [
   {
-    profile_picture: "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
+    profile_picture:
+      "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
     name: "Adidas",
-    media: ["/creatives/creative.jpeg", "/creatives/creative.jpeg", "/creatives/creative.jpeg"],
+    media: ["/creatives/Nike-Air-force-1.png", "/creatives/Nike-Air-force-1.png", "/creatives/Nike-Air-force-1.png"],
     content: {
       url: "https://www.example.com",
       cta: "learn_more",
@@ -103,9 +111,10 @@ export const discoverAds: DiscoverAdsCardProps[] = [
     },
   },
   {
-    profile_picture: "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
+    profile_picture:
+      "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
     name: "Adidas",
-    media: ["/creatives/creative.jpeg", "/creatives/creative.jpeg", "/creatives/creative.jpeg"],
+    media: ["/creatives/Nike-Air-force-1.png", "/creatives/Nike-Air-force-1.png", "/creatives/Nike-Air-force-1.png"],
     content: {
       url: "https://www.example.com",
       cta: "shop_now",
@@ -113,9 +122,10 @@ export const discoverAds: DiscoverAdsCardProps[] = [
     },
   },
   {
-    profile_picture: "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
+    profile_picture:
+      "https://static.vecteezy.com/system/resources/previews/010/994/239/non_2x/adidas-logo-black-symbol-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg",
     name: "Adidas",
-    media: ["/creatives/creative.jpeg", "/creatives/creative.jpeg", "/creatives/creative.jpeg"],
+    media: ["/creatives/Nike-Air-force-1.png", "/creatives/Nike-Air-force-1.png", "/creatives/Nike-Air-force-1.png"],
     content: {
       url: "https://www.example.com",
       cta: "sign_up",
