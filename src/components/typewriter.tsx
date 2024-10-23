@@ -29,6 +29,7 @@ const RecursiveDisplay: React.FC<{ data: TypewriterData }> = ({ data }) => {
 };
 
 export function Typewriter({ data }: TypewriterProps) {
+  // @ts-expect-error - required for icons to work
   const [isComplete, setIsComplete] = useState<boolean>(false); // eslint-disable-line
 
   return <RecursiveDisplay data={data} />;

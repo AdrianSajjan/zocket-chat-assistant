@@ -2,6 +2,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { GoogleDiscoverAdsCardProps, MetaDiscoverAdsCardProps } from "@/constants/creatives";
 import { cn, upperFirst } from "@/lib/utils";
+// @ts-expect-error - required for icons to work
 import ReactStars from "react-rating-stars-component";
 
 export function MetaDiscoverAdsCard({ profile_picture, name, media, content, className }: MetaDiscoverAdsCardProps) {
@@ -86,14 +87,7 @@ export function GoogleDiscoverAdsCard({ profile_picture, name, headline, url, de
             <span className="text-sm text-black/80">Rating for {name}</span>
             <span className="text-sm font-medium text-foreground flex items-center gap-px">
               {rating}
-              <ReactStars
-                count={5}
-                value={rating}
-                size={16}
-                isHalf={true}
-                activeColor="#ffd700"
-              />
-              ({no_of_reviews})
+              <ReactStars count={5} value={rating} size={16} isHalf={true} activeColor="#ffd700" />({no_of_reviews})
             </span>
           </div>
         ) : null}
