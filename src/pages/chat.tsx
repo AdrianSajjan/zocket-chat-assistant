@@ -5,7 +5,9 @@ import { Typewriter, TypewriterData } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
+import { campaignMetrics } from "@/constants/campaign-metrics";
 import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
+import { keywords } from "@/constants/keywords";
 import { targeting } from "@/constants/targeting";
 import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
@@ -52,7 +54,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(6);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
@@ -113,14 +115,13 @@ export function ChatScreen() {
         auto: true,
         steps: ["Generating adcreatives from the product image", "Generating text content from the product details"],
       },
-      // {
-      //   text: "Here are the recommended keywords for your campaign",
-      //   body: {},
-      //   type: "custom",
-      //   wait: 3000,
-      //   loader: "steps",
-      //   steps: ["Generating keywords based on the product and ads"],
-      // },
+      {
+        body: keywords,
+        type: "custom",
+        wait: 3000,
+        loader: "steps",
+        steps: ["Generating keywords based on the product and ads"],
+      },
       {
         body: { type: "p", text: "Your campaign for meta has been launched successfully 🎉 🎊" },
         type: "custom",
@@ -129,21 +130,13 @@ export function ChatScreen() {
         loader: "steps",
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
-      // {
-      //   body: (
-      //     <ul>
-      //       <li></li>
-      //       <li></li>
-      //       <li></li>
-      //       <li></li>
-      //       <li></li>
-      //     </ul>
-      //   ),
-      //   type: "custom",
-      //   wait: 5000,
-      //   loader: "steps",
-      //   steps: ["Fetching the latest data from the campaign", "Analyzing the data to generate insights"],
-      // },
+      {
+        body: campaignMetrics,
+        type: "custom",
+        wait: 5000,
+        loader: "steps",
+        steps: ["Fetching the latest data from the campaign", "Analyzing the data to generate insights"],
+      },
       // {
       //   text: "Here is the generated report compiling all the latest data from your last campaign",
       //   image: "/images/pdf-thumbnail.webp",
