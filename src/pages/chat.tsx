@@ -68,9 +68,12 @@ export function ChatScreen() {
   const steps: Steps[] = useMemo(() => {
     return [
       {
-        body: { type: "p", text: "Here are the generated Meta Ads" },
+        body: {
+          type: "p",
+          text: "We've harnessed the power of AI to create highly engaging Meta ads tailored specifically for your audience. Our AI-driven approach ensures that the ads are not only visually appealing but also strategically designed to boost engagement and conversion rates.",
+        },
         animated: (
-          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden">
+          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden max-w-5xl">
             {metaCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <MetaCreativeCard creative={creative.creative} brand={creative.brand} />
@@ -92,7 +95,10 @@ export function ChatScreen() {
         steps: ["Generating targeting settings based on the product and adcreatives", "Compiling the relevant settings based on the results"],
       },
       {
-        body: { type: "p", text: "Your campaign for Meta has been launched successfully 🎉 🎊" },
+        body: {
+          type: "p",
+          text: "Your Meta campaign has been successfully launched and fully optimized for maximum performance 🎉 🎊. Targeting has been fine-tuned to reach your ideal audience, and ad placements have been strategically selected. We're monitoring real-time metrics to ensure continued success!",
+        },
         type: "custom",
         wait: 6000,
         confetti: true,
@@ -100,9 +106,12 @@ export function ChatScreen() {
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
-        body: { type: "p", text: "Here are the generated Google Ads" },
+        body: {
+          type: "p",
+          text: "We've utilized AI to craft compelling Google ads tailored to your audience. Our AI-driven approach ensures that the ads are optimized for relevance, delivering impactful messaging to maximize click-through rates and conversions.",
+        },
         animated: (
-          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden animate-in fade-in duration-500">
+          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden max-w-5xl">
             {googleCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <GoogleCreativeCard {...creative} />
@@ -125,7 +134,10 @@ export function ChatScreen() {
         auto: true,
       },
       {
-        body: { type: "p", text: "Your campaign for Google has been launched successfully 🎉 🎊" },
+        body: {
+          type: "p",
+          text: "Your Google campaign has been successfully launched and optimized for peak performance 🎉 🎊. Keywords have been carefully selected to match user intent, and bids are set to maximize visibility. We're actively monitoring performance to ensure the best possible results!",
+        },
         type: "custom",
         wait: 3000,
         confetti: true,
@@ -149,7 +161,7 @@ export function ChatScreen() {
       {
         body: { type: "p", text: "Here are the latest ads being run by Adidas for Meta" },
         animated: (
-          <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+          <div className="flex gap-3.5 overflow-auto max-w-5xl mt-4 scrollbar-hidden">
             {metaDiscoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <MetaDiscoverAdsCard {...ads} />
@@ -252,7 +264,7 @@ export function ChatScreen() {
         {isLoading ? (
           <div className="flex gap-4">
             <img src="/zocket.svg" className="h-10 w-10 rounded-full" />
-            <div className="mt-5">
+            <div>
               <Loader type={steps[step].loader} wait={steps[step].wait} steps={steps[step].steps} />
             </div>
           </div>
@@ -320,7 +332,7 @@ function AgentChatBubble({ message }: { message: Message }) {
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
           <div className="flex gap-4">
             <img src="/zocket.svg" className="h-10 w-10 rounded-full" />
-            <div className="flex-1 pt-5">
+            <div className="flex-1">
               {message.body ? <Typewriter data={message.body} /> : null}
               {message.animated ? <div className={cn("transition-opacity duration-500 animate-in fade-in", isComplete ? "opacity-100" : "opacity-0")}>{message.animated}</div> : null}
             </div>
@@ -386,7 +398,7 @@ function StepsLoader({ steps, wait }: { steps: string[]; wait: number }) {
               <Spinner />
             ) : idx < index ? (
               <span className="h-4 w-4 rounded-full bg-green-600 grid place-items-center">
-                <CheckIcon color="white" size={12} strokeWidth={2.5} />
+                <CheckIcon color="white" size={10} strokeWidth={2.5} />
               </span>
             ) : (
               <span className="h-4 w-4 rounded-full border-2 border-gray-200" />

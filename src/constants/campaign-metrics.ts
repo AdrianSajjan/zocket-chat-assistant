@@ -2,169 +2,265 @@ export const metaCampaignMetricsAndInsights = {
   type: "div",
   children: [
     {
-      type: "h2",
-      text: "Meta Ads Campaign Metrics",
-    },
-    {
       type: "table",
-      className: "border-collapse border border-gray-300 w-full",
+      styles: {
+        borderCollapse: "collapse",
+        width: "100%",
+        marginBottom: "1.5rem",
+      },
       children: [
         {
-          type: "thead",
+          type: "tr",
           children: [
             {
-              type: "tr",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
                 {
-                  type: "th",
-                  className: "border border-gray-300 p-2",
-                  text: "Metric",
-                },
-                {
-                  type: "th",
-                  className: "border border-gray-300 p-2",
-                  text: "Value",
+                  type: "strong",
+                  text: "Ad spends",
                 },
               ],
+            },
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "$72,119",
             },
           ],
         },
         {
-          type: "tbody",
+          type: "tr",
           children: [
             {
-              type: "tr",
-              className: "bg-gray-100",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Impressions" },
-                { type: "td", className: "border border-gray-300 p-2", text: "1,023,456" },
+                {
+                  type: "strong",
+                  text: "Results",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-white",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "864",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Clicks" },
-                { type: "td", className: "border border-gray-300 p-2", text: "9,872" },
+                {
+                  type: "strong",
+                  text: "Cost per result",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-gray-100",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "$83.47",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Click-Through Rate (CTR)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "0.963%" },
+                {
+                  type: "strong",
+                  text: "CTR",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-white",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "2.16%",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost Per Click (CPC)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹10.12" },
+                {
+                  type: "strong",
+                  text: "Impressions",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-gray-100",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "76,722",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹99,873.84" },
+                {
+                  type: "strong",
+                  text: "CPM",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-white",
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "$0.94",
+            },
+          ],
+        },
+        {
+          type: "tr",
+          children: [
+            {
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
               children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Conversions" },
-                { type: "td", className: "border border-gray-300 p-2", text: "1,012" },
+                {
+                  type: "strong",
+                  text: "ROAS",
+                },
               ],
             },
             {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Conversion Rate" },
-                { type: "td", className: "border border-gray-300 p-2", text: "10.25%" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-white",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Cost Per Acquisition (CPA)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "₹98.68" },
-              ],
-            },
-            {
-              type: "tr",
-              className: "bg-gray-100",
-              children: [
-                { type: "td", className: "border border-gray-300 p-2", text: "Return On Ad Spend (ROAS)" },
-                { type: "td", className: "border border-gray-300 p-2", text: "5.06" },
-              ],
+              type: "td",
+              styles: {
+                padding: "0.5rem",
+                border: "1px solid #ddd",
+              },
+              text: "5.24",
             },
           ],
         },
       ],
     },
     {
-      type: "h2",
-      text: "Suggestions to Improve the Meta Ads Campaign",
-    },
-    {
-      type: "ol",
-      className: "list-decimal list-inside pl-5",
+      type: "p",
       children: [
         {
-          type: "li",
-          text: "A/B Testing: Experiment with different ad creatives, targeting options, and bidding strategies to identify the most effective combinations.",
-        },
-        {
-          type: "li",
-          text: "Custom Audiences: Leverage custom audiences based on website visitors, email subscribers, and lookalike audiences to reach highly targeted users.",
-        },
-        {
-          type: "li",
-          text: "Video Ads: Consider using video ads to showcase the product's features and benefits in a more engaging way.",
-        },
-        {
-          type: "li",
-          text: "Dynamic Creative: Use dynamic creative to personalize ad content based on user interests and behaviors.",
-        },
-        {
-          type: "li",
-          text: "Influencer Marketing: Partner with relevant influencers to reach a wider audience and increase brand awareness.",
+          type: "strong",
+          text: "Suggestions to Improve the Meta Ads Campaign",
         },
       ],
     },
     {
-      type: "h2",
-      text: "Suggestions to Improve the Google Search Ads Campaign",
-    },
-    {
-      type: "ol",
-      className: "list-decimal list-inside pl-5",
+      type: "ul",
+      styles: {
+        listStyleType: "disc",
+        paddingLeft: "1.25rem",
+        marginTop: "0.5rem",
+      },
       children: [
         {
           type: "li",
-          text: "Keyword Research: Conduct thorough keyword research to identify additional relevant keywords and phrases.",
+          children: [
+            {
+              type: "strong",
+              text: "Creative fatigue",
+            },
+            {
+              type: "span",
+              text: ": Replace the creatives with the status 'Creative fatigue' with new creatives. This gives the platform an opportunity to showcase the creatives to new audience which in turn leads to increase in conversions",
+            },
+          ],
         },
         {
           type: "li",
-          text: "Ad Extensions: Use ad extensions like sitelinks, callouts, and structured snippets to provide more information and encourage clicks.",
+          children: [
+            {
+              type: "strong",
+              text: "Custom audiences",
+            },
+            {
+              type: "span",
+              text: ": Leverage custom audiences based on website visitors, email subscribers, and lookalike audiences to reach highly targeted users. Custom audiences generally tend to reduce the CPA by 20%",
+            },
+          ],
         },
         {
           type: "li",
-          text: "Negative Keywords: Add negative keywords to exclude irrelevant search terms and improve ad relevance.",
+          children: [
+            {
+              type: "strong",
+              text: "Multiple adapts",
+            },
+            {
+              type: "span",
+              text: ": Upload creatives in multiple aspect ratios supported by Meta to showcase the ads more prominently in other platforms like Instagram story placement, explore section, etc",
+            },
+          ],
         },
         {
           type: "li",
-          text: "Ad Copy Optimization: Regularly test different ad copy variations to improve click-through rates and conversions.",
-        },
-        {
-          type: "li",
-          text: "Remarketing: Implement remarketing campaigns to target users who have visited your website but haven’t converted.",
+          children: [
+            {
+              type: "strong",
+              text: "Learning limited",
+            },
+            {
+              type: "span",
+              text: ": The adsets with the status 'Learning limited' need to be updated in terms of targeting so that it re-enters the learning phase. When adsets are in the 'Learning limited' stage, the adset's performance decreases",
+            },
+          ],
         },
       ],
     },
