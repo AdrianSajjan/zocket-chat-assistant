@@ -9,11 +9,13 @@ import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
 import { ArrowUpIcon, PaperclipIcon, XIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Confetti from "react-confetti";
 
 type Message = TextMessage | ImageMessage | CustomMessage;
 
 interface Steps extends Omit<Message, "sender"> {
   wait: number;
+  confetti?: boolean;
 }
 
 interface TextMessage {
@@ -46,6 +48,7 @@ export function ChatScreen() {
 
   const [step, setStep] = useState(0);
   const [isLoading, setLoading] = useState(false);
+  const [isConfettiVisible, setConfettiVisible] = useState(false);
 
   const [query, setQuery] = useState("");
   const [media, setMedia] = useState<ChatMedia | null>(null);
@@ -63,12 +66,17 @@ export function ChatScreen() {
       {
         text: "What is the description of the product you want to advertise?",
         type: "text",
-        wait: 1500,
+        wait: 1000,
+      },
+      {
+        text: "What is the price of the product you want to advertise?",
+        type: "text",
+        wait: 1000,
       },
       {
         text: "Provide the image of the product you want to advertise",
         type: "text",
-        wait: 1500,
+        wait: 1000,
       },
       {
         text: "Here are the generated meta adcopies",
@@ -91,9 +99,10 @@ export function ChatScreen() {
         wait: 3000,
       },
       {
-        text: "Your campaign for meta has been launched successfully",
+        text: "Your campaign for meta has been launched successfully 🎉 🎊",
         type: "text",
         wait: 3000,
+        confetti: true,
       },
       {
         text: "Here are the generated google adcopies",
@@ -116,9 +125,10 @@ export function ChatScreen() {
         wait: 3000,
       },
       {
-        text: "Your campaign for google has been launched successfully",
+        text: "Your campaign for google has been launched successfully 🎉 🎊",
         type: "text",
-        wait: 1500,
+        wait: 3000,
+        confetti: true,
       },
       {
         text: "Here is how your latest campaign is performing",
@@ -145,9 +155,9 @@ export function ChatScreen() {
         text: "Here are the latest ads from Adidas",
         body: (
           <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
-            {discoverAds.map((ad, index) => (
+            {discoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
-                <DiscoverAdsCard {...ad} />
+                <DiscoverAdsCard {...ads} />
               </div>
             ))}
           </div>
@@ -162,11 +172,12 @@ export function ChatScreen() {
     setLoading(true);
     setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 100);
 
-    const { wait, ...message } = steps[step];
+    const { wait, confetti, ...message } = steps[step];
     const timeout = setTimeout(() => {
       setMessages((state) => [...state, { ...message, sender: "bot" } as Message]);
       setLoading(false);
       setTimeout(() => container.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 100);
+      if (confetti) setTimeout(() => setConfettiVisible(true), 500);
     }, wait);
 
     return () => {
@@ -206,6 +217,7 @@ export function ChatScreen() {
 
   return (
     <section className="flex flex-col items-center h-full w-full pb-6">
+      {isConfettiVisible ? <Confetti height={window.innerHeight} width={window.innerWidth} recycle={false} onConfettiComplete={() => setConfettiVisible(false)} /> : null}
       <div ref={container} className="flex flex-col w-full my-6 flex-1 max-w-5xl overflow-auto scrollbar-hidden gap-4 px-4">
         {messages.map((message, index) => (
           <ChatBubble key={index} {...message} />
