@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 
-interface TypewriterProps extends React.HTMLAttributes<HTMLSpanElement> {
-  text: string;
-  delay?: number;
-  speed?: number;
-  onComplete?: () => void;
+//
+export interface TypewriterData {
+  type?: string;
+  styles?: string;
+  text?: string;
+  children?: TypewriterData[];
 }
 
-export function Typewriter({ text, delay = 0, speed = 20, onComplete, ...props }: TypewriterProps) {
-  const [animated, setAnimated] = useState("");
-  const [index, setIndex] = useState(0);
+interface TypewriterProps {
+  data: TypewriterData;
+}
 
-  useEffect(() => {
-    const ms = index === 0 ? delay + speed : speed;
-    if (index < text.length) {
-      const timeout = setTimeout(() => {
-        setAnimated((prev) => prev + text[index]);
-        setIndex((prevIndex) => prevIndex + 1);
-      }, ms);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    } else {
-      onComplete?.();
+const RecursiveDisplay: React.FC<{ data: TypewriterData }> = ({ data }) => {
+  const renderElement = useCallback(() => {
+    const { type, styles: style, text, children } = data;
+    if (text) {
+      return React.createElement(type || "span", { style }, text);
     }
-  }, [index, text, speed, delay]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (children) {
+      const ChildElements = children.map((child, idx) => <RecursiveDisplay key={idx} data={child} />);
+      return React.createElement(type || "div", { style }, ChildElements);
+    }
+    return null;
+  }, [data]);
 
-  return <span {...props}>{animated}</span>;
+  return <Fragment>{renderElement()}</Fragment>;
+};
+
+export function Typewriter({ data }: TypewriterProps) {
+  const [isComplete, setIsComplete] = useState<boolean>(false); // eslint-disable-line
+
+  return <RecursiveDisplay data={data} />;
 }

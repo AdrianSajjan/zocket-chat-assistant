@@ -1,11 +1,12 @@
 import { DiscoverAdsCard } from "@/components/cards/discover-ads";
 import GoogleCreativeCard from "@/components/cards/google-creative";
 import MetaCreativeCard from "@/components/cards/meta-creative";
-import { Typewriter } from "@/components/typewriter";
+import { Typewriter, TypewriterData } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { discoverAds, googleCreatives, metaCreatives } from "@/constants/creatives";
+import { targeting } from "@/constants/targeting";
 import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
 import { ArrowUpIcon, CheckIcon, PaperclipIcon, XIcon } from "lucide-react";
@@ -37,7 +38,8 @@ interface ImageMessage {
 interface CustomMessage {
   sender: "user" | "bot";
   text?: string;
-  body: React.ReactNode;
+  body: TypewriterData;
+  animated?: React.ReactNode;
   type: "custom";
 }
 
@@ -49,7 +51,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
@@ -62,32 +64,8 @@ export function ChatScreen() {
   const steps: Steps[] = useMemo(() => {
     return [
       {
-        text: "What is the name of the product you want to advertise?",
-        type: "text",
-        wait: 1500,
-        loader: "text",
-      },
-      {
-        text: "What is the description of the product you want to advertise?",
-        type: "text",
-        wait: 1000,
-        loader: "text",
-      },
-      {
-        text: "What is the price of the product you want to advertise?",
-        type: "text",
-        wait: 1000,
-        loader: "text",
-      },
-      {
-        text: "Provide the image of the product you want to advertise",
-        type: "text",
-        wait: 1000,
-        loader: "text",
-      },
-      {
-        text: "Here are the generated meta adcopies",
-        body: (
+        body: {},
+        animated: (
           <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
             {metaCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
@@ -102,12 +80,11 @@ export function ChatScreen() {
         steps: ["Generating ads from the product image", "Generating text content from the product details"],
       },
       {
-        text: "Here are the recommended settings for targeting",
-        body: <div></div>,
+        body: targeting,
         type: "custom",
         wait: 3000,
         loader: "steps",
-        steps: ["Generating targeting settings based on the product and adcreatives"],
+        steps: ["Generating targeting settings based on the product and adcreatives", "Compiling the relevant settings based on the results"],
       },
       {
         text: "Your campaign for meta has been launched successfully 🎉 🎊",
@@ -119,8 +96,9 @@ export function ChatScreen() {
       },
       {
         text: "Here are the generated google adcopies",
-        body: (
-          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+        body: {},
+        animated: (
+          <div className="flex gap-3 overflow-auto max-w-2xl mt-4 scrollbar-hidden animate-in fade-in duration-500">
             {googleCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <GoogleCreativeCard {...creative} />
@@ -135,7 +113,7 @@ export function ChatScreen() {
       },
       {
         text: "Here are the recommended keywords for your campaign",
-        body: <div></div>,
+        body: {},
         type: "custom",
         wait: 3000,
         loader: "steps",
@@ -150,21 +128,13 @@ export function ChatScreen() {
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
-        text: "Here is how your latest campaign is performing",
         body: (
           <ul>
-            <li>
-              <Typewriter text="lorem ipsum - 1" delay={2000} />
-            </li>
-            <li>
-              <Typewriter text="lorem ipsum - 2" delay={2200} />
-            </li>
-            <li>
-              <Typewriter text="lorem ipsum - 3" delay={2400} />
-            </li>
-            <li>
-              <Typewriter text="lorem ipsum - 4" delay={2600} />
-            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
           </ul>
         ),
         type: "custom",
@@ -315,75 +285,20 @@ function UserChatBubble({ message }: { message: Message }) {
         </div>
       );
 
-    case "image":
-      return (
-        <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
-          {message.text ? (
-            <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tr-none px-5 py-3")}>
-              <span>{message.text}</span>
-            </div>
-          ) : null}
-          <img src={message.image} className="h-40 w-auto" />
-        </div>
-      );
-
-    case "custom":
-      return (
-        <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
-          {message.text ? (
-            <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tr-none px-5 py-3")}>
-              <span>{message.text}</span>
-            </div>
-          ) : null}
-          {message.body}
-        </div>
-      );
     default:
       throw new Error("Invalid message type");
   }
 }
 
 function AgentChatBubble({ message }: { message: Message }) {
-  const [isComplete, setComplete] = useState(!message.text);
-
-  const handleComplete = () => {
-    if (!isComplete) setComplete(true);
-    setTimeout(() => document.getElementById("container")?.lastElementChild?.scrollIntoView({ behavior: "smooth" }), 200);
-  };
+  const [isComplete] = useState(false);
 
   switch (message.type) {
-    case "text":
-      return (
-        <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3", message.sender === "user" ? "self-end" : "self-start")}>
-          <Typewriter onComplete={handleComplete} text={message.text} />
-        </div>
-      );
-
-    case "image":
-      return (
-        <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
-          {message.text ? (
-            <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 w-fit")}>
-              <Typewriter onComplete={handleComplete} text={message.text} />
-            </div>
-          ) : null}
-          {isComplete ? (
-            <span className="animate-in fade-in duration-500">
-              <img src={message.image} className="h-40 w-auto" />
-            </span>
-          ) : null}
-        </div>
-      );
-
     case "custom":
       return (
         <div className={cn(message.sender === "user" ? "self-end" : "self-start")}>
-          {message.text ? (
-            <div className={cn("text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 w-fit")}>
-              <Typewriter onComplete={handleComplete} text={message.text} />
-            </div>
-          ) : null}
-          {isComplete ? <span className="animate-in fade-in duration-500">{message.body}</span> : null}
+          <Typewriter data={message.body} />
+          {message.animated ? <div className={cn("transition-opacity duration-500", isComplete ? "opacity-100" : "opacity-0")}>{message.animated}</div> : null}
         </div>
       );
 
@@ -437,22 +352,22 @@ function StepsLoader({ steps, wait }: { steps: string[]; wait: number }) {
   }, [steps, wait, index]);
 
   return (
-    <div className="text-sm text-foreground/80 bg-accent rounded-2xl rounded-tl-none px-5 py-3 self-start flex flex-col gap-2">
+    <div className="text-sm self-start flex flex-col gap-1.5">
       {steps.map((step, idx) => (
         <Fragment key={idx}>
           <div className="flex items-center gap-1.5">
             {idx === index ? (
               <Spinner />
             ) : idx < index ? (
-              <span className="h-6 w-6 rounded-full bg-green-600 grid place-items-center">
-                <CheckIcon color="white" size={14} strokeWidth={2.5} />
+              <span className="h-4 w-4 rounded-full bg-green-600 grid place-items-center">
+                <CheckIcon color="white" size={12} strokeWidth={2.5} />
               </span>
             ) : (
-              <span className="h-6 w-6 rounded-full border-2 border-gray-200" />
+              <span className="h-4 w-4 rounded-full border-2 border-gray-200" />
             )}
-            <p className="text-sm">{step}</p>
+            <p className="text-xs">{step}</p>
           </div>
-          {idx < steps.length - 1 ? <div className="bg-gray-300 w-0.5 h-4 ml-2.5" /> : null}
+          {idx < steps.length - 1 ? <div className="bg-gray-300 w-px h-3 ml-1.5" /> : null}
         </Fragment>
       ))}
     </div>
