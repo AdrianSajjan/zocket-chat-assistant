@@ -73,7 +73,7 @@ export function ChatScreen() {
           text: "We've harnessed the power of AI to create highly engaging Meta ads tailored specifically for your audience. Our AI-driven approach ensures that the ads are not only visually appealing but also strategically designed to boost engagement and conversion rates.",
         },
         animated: (
-          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden max-w-5xl">
+          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden max-w-4xl">
             {metaCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <MetaCreativeCard creative={creative.creative} brand={creative.brand} />
@@ -111,7 +111,7 @@ export function ChatScreen() {
           text: "We've utilized AI to craft compelling Google ads tailored to your audience. Our AI-driven approach ensures that the ads are optimized for relevance, delivering impactful messaging to maximize click-through rates and conversions.",
         },
         animated: (
-          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden max-w-5xl">
+          <div className="flex gap-3 overflow-auto w-full mt-4 scrollbar-hidden max-w-4xl">
             {googleCreatives.map((creative, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <GoogleCreativeCard {...creative} />
@@ -161,7 +161,7 @@ export function ChatScreen() {
       {
         body: { type: "p", text: "Here are the latest ads being run by Adidas for Meta" },
         animated: (
-          <div className="flex gap-3.5 overflow-auto max-w-5xl mt-4 scrollbar-hidden">
+          <div className="flex gap-3.5 overflow-auto w-full max-w-4xl mt-4 scrollbar-hidden">
             {metaDiscoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <MetaDiscoverAdsCard {...ads} />
@@ -176,9 +176,9 @@ export function ChatScreen() {
         auto: true,
       },
       {
-        text: "Here are the latest ads from Adidas for Google",
-        body: (
-          <div className="flex gap-3.5 overflow-auto w-full mt-4 scrollbar-hidden">
+        body: { type: "p", text: "Here are the latest ads being run by Adidas for Google" },
+        animated: (
+          <div className="flex gap-3.5 overflow-auto w-full max-w-4xl mt-4 scrollbar-hidden">
             {googleDiscoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
                 <GoogleDiscoverAdsCard {...ads} />
