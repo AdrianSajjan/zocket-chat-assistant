@@ -1,11 +1,11 @@
-import { DiscoverAdsCard } from "@/components/cards/discover-ads";
+import { GoogleDiscoverAdsCard, MetaDiscoverAdsCard } from "@/components/cards/discover-ads";
 import GoogleCreativeCard from "@/components/cards/google-creative";
 import MetaCreativeCard from "@/components/cards/meta-creative";
 import { Typewriter, TypewriterData } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
-import { discoverAds, googleCreatives, metaCreatives } from "@/constants/creatives";
+import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
 import { targeting } from "@/constants/targeting";
 import { cn } from "@/lib/utils";
 import { useSearch } from "@tanstack/react-router";
@@ -154,9 +154,25 @@ export function ChatScreen() {
         text: "Here are the latest ads from Adidas",
         body: (
           <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
-            {discoverAds.map((ads, index) => (
+            {metaDiscoverAds.map((ads, index) => (
               <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
-                <DiscoverAdsCard {...ads} />
+                <MetaDiscoverAdsCard {...ads} />
+              </div>
+            ))}
+          </div>
+        ),
+        type: "custom",
+        wait: 4000,
+        loader: "steps",
+        steps: ["Fetching the latest ads from Adidas", "Compiling the top ads from Adidas"],
+      },
+      {
+        text: "Here are the latest ads from Adidas",
+        body: (
+          <div className="flex gap-3.5 overflow-auto max-w-2xl mt-4 scrollbar-hidden">
+            {googleDiscoverAds.map((ads, index) => (
+              <div key={index} className="w-fit h-fit shrink-0 rounded-xl">
+                <GoogleDiscoverAdsCard {...ads} />
               </div>
             ))}
           </div>
