@@ -5,7 +5,7 @@ import { Typewriter, TypewriterData } from "@/components/typewriter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
-import { campaignMetrics } from "@/constants/campaign-metrics";
+import { metaAndGoogleCampaignMetrcs, metaCampaignMetricsAndInsights } from "@/constants/campaign-metrics";
 import { googleCreatives, googleDiscoverAds, metaCreatives, metaDiscoverAds } from "@/constants/creatives";
 import { keywords } from "@/constants/keywords";
 import { targeting } from "@/constants/targeting";
@@ -54,7 +54,7 @@ interface ChatMedia {
 export function ChatScreen() {
   const search = useSearch({ from: "/chat" });
 
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
@@ -131,20 +131,19 @@ export function ChatScreen() {
         steps: ["Setting up the adsets", "Publishing the ads", "Launching the campaign"],
       },
       {
-        body: campaignMetrics,
+        body: metaCampaignMetricsAndInsights,
         type: "custom",
         wait: 5000,
         loader: "steps",
-        steps: ["Fetching the latest data from the campaign", "Analyzing the data to generate insights"],
+        steps: ["Fetching the latest data for the meta campaign", "Analyzing the data to generate insights and suggestions"],
       },
-      // {
-      //   text: "Here is the generated report compiling all the latest data from your last campaign",
-      //   image: "/images/pdf-thumbnail.webp",
-      //   type: "image",
-      //   wait: 4000,
-      //   loader: "steps",
-      //   steps: ["Generating the report", "Compiling the data", "Sending the report"],
-      // },
+      {
+        body: metaAndGoogleCampaignMetrcs,
+        type: "custom",
+        wait: 5000,
+        loader: "steps",
+        steps: ["Compiling the latest metrics for recent meta and google campaigns", "Analyzing the data to generate pdf report"],
+      },
       {
         body: { type: "p", text: "Here are the latest ads being run by adidas" },
         animated: (
