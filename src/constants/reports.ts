@@ -6,7 +6,7 @@ export const reports = {
       children: [
         {
           type: "strong",
-          text: "Shared the PDF report to following emails:",
+          text: "We’ve delivered the comprehensive marketing report, featuring critical KPIs and campaign analysis, to the following email addresses.",
         },
       ],
     },
