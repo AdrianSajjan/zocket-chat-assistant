@@ -1,5 +1,6 @@
 export interface MetaCreativeCardProps {
   creative: {
+    type: "image" | "video";
     caption: string;
     creative: string;
     headline: string;
@@ -16,6 +17,7 @@ export interface MetaCreativeCardProps {
 export const metaCreatives: MetaCreativeCardProps[] = [
   {
     creative: {
+      type: "image",
       caption:
         "Step up your game with the timeless Nike Air Force 1. Classic design meets all-day comfort, giving you the perfect blend of street style and performance Geyours now and make every step count! #AirForcel #NikeStyle",
       creative: "/creatives/Nike-Air-force-1.png",
@@ -30,12 +32,13 @@ export const metaCreatives: MetaCreativeCardProps[] = [
   },
   {
     creative: {
+      type: "video",
       caption:
-        "Elevate your look with the legendary Nike Air Force 1 Built for comfort, designed for style-this sneaker has stood the test of time. Available now in fresh colors. Don't miss out! #IconicAFI #NikeSneakers",
-      creative: "/creatives/Nike-Air-force-2.png",
-      headline: "Legendary in every step",
-      subheadline: "Available now in fresh colors",
-      cta: "buy_now",
+        "From courts to the streets, the Nike Air Force 1 has become a fashion icon Combining comfort, durability. and classic style, it's the shoe for any occasion. Get yours today! Would you like a more specific focus on a certain style or color of the shoes?",
+      creative: "/creatives/Nike-Air-force-3.mp4",
+      headline: "All-Day Comfort",
+      subheadline: "Get yours today",
+      cta: "buy_up",
     },
     brand: {
       brand_name: "Nike",
@@ -44,12 +47,13 @@ export const metaCreatives: MetaCreativeCardProps[] = [
   },
   {
     creative: {
+      type: "image",
       caption:
-        "From courts to the streets, the Nike Air Force 1 has become a fashion icon Combining comfort, durability. and classic style, it's the shoe for any occasion. Get yours today! Would you like a more specific focus on a certain style or color of the shoes?",
-      creative: "/creatives/Nike-Air-force-3.jpg",
-      headline: "All-Day Comfort",
-      subheadline: "Get yours today",
-      cta: "buy_up",
+        "Elevate your look with the legendary Nike Air Force 1 Built for comfort, designed for style-this sneaker has stood the test of time. Available now in fresh colors. Don't miss out! #IconicAFI #NikeSneakers",
+      creative: "/creatives/Nike-Air-force-2.jpg",
+      headline: "Legendary in every step",
+      subheadline: "Available now in fresh colors",
+      cta: "buy_now",
     },
     brand: {
       brand_name: "Nike",

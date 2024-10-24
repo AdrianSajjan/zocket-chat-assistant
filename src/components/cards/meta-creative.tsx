@@ -1,6 +1,7 @@
 import { MetaCreativeCardProps } from "@/constants/creatives";
 import { cn, upperFirst } from "@/lib/utils";
 import { GlobeIcon } from "lucide-react";
+import { CreativeVideoPlayer } from "../player/creative-video";
 
 export function MetaCreativeCard({ creative, className, brand }: MetaCreativeCardProps) {
   const name = brand?.brand_name || "Zocket";
@@ -22,7 +23,7 @@ export function MetaCreativeCard({ creative, className, brand }: MetaCreativeCar
         <p className="text-xs text-black/50 whitespace-pre-line line-clamp-5">{creative.caption}</p>
       </div>
       <div className="mt-3.5 w-full overflow-x-auto rounded-lg" id="image">
-        <img src={creative.creative} alt="creative" className="block w-full h-72 object-cover aspect-square" />
+        {creative.type === "image" ? <img src={creative.creative} alt="creative" className="block w-full h-72 object-cover aspect-square" /> : <CreativeVideoPlayer src={creative.creative} />}
       </div>
       <div id="headline" className="rounded-b-2xl bg-zinc-100/70 flex items-center justify-between pl-5 pr-4 py-3 mt-5 -mx-3">
         <div className="flex flex-col max-w-[12.5rem] overflow-hidden text-ellipsis">

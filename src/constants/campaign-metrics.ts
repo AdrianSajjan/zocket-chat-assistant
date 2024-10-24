@@ -6,6 +6,7 @@ export const metaCampaignMetricsAndInsights = {
       styles: {
         borderCollapse: "collapse",
         width: "100%",
+        maxWidth: "35rem",
         marginBottom: "1.5rem",
       },
       children: [
@@ -287,6 +288,7 @@ export const googleCampaignMetricsAndInsights = {
       styles: {
         borderCollapse: "collapse",
         width: "100%",
+        maxWidth: "35rem",
         marginBottom: "1.5rem",
       },
       children: [
