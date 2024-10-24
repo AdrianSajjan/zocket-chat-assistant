@@ -1,9 +1,9 @@
 import { fetchVideoDimensionsFromURL } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
-export function useVideoCreative(url?: string, muted?: boolean) {
+export function useVideoCreative(url?: string, autoplay?: boolean, muted?: boolean) {
   const [isMuted, setMuted] = useState(!!muted);
-  const [isPlaying, setPlaying] = useState(false);
+  const [isPlaying, setPlaying] = useState(!!autoplay);
   const [aspectRatio, setAspectRatio] = useState<"1/1" | "16/9" | "9/16">("1/1");
 
   const video = useRef<HTMLVideoElement>(null);

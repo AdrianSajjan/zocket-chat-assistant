@@ -20,11 +20,13 @@ interface CreativeVideoPlayerProps extends VideoHTMLAttributes<HTMLVideoElement>
 }
 
 export function CreativeVideoPlayer({ src, className, container, fluid, ...props }: CreativeVideoPlayerProps) {
-  const [player, video] = useVideoCreative(src, true);
+  const [player, video] = useVideoCreative(src, true, true);
   return (
     <div className={cn("relative", container)}>
       <video
         ref={player}
+        autoPlay
+        muted
         src={formatSource(src, props.poster)}
         preload="metadata"
         className={cn("block w-full object-cover", fluid ? "h-auto" : aspectRatioMap[video.aspectRatio], className)}

@@ -7,8 +7,8 @@ import { UserNavigation } from "@/layout/sidebar/navigation/user";
 
 const data = {
   user: {
-    name: "Adrian Sajjan",
-    email: "adrian@zocket.com",
+    name: "Karthik Venkateswaran",
+    email: "karthik@zocket.com",
     avatar: "",
   },
   main: [
