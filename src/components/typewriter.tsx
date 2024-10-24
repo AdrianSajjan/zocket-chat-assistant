@@ -1,6 +1,5 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 
-//
 export interface TypewriterData {
   type?: string;
   styles?: string;
@@ -8,11 +7,17 @@ export interface TypewriterData {
   children?: TypewriterData[];
 }
 
-interface TypewriterProps {
+export interface TextFadeProps {
+  text: string;
+  stagger?: number;
+  delay?: number;
+}
+
+export interface TypewriterProps {
   data: TypewriterData;
 }
 
-const RecursiveDisplay: React.FC<{ data: TypewriterData }> = ({ data }) => {
+export function RecursiveDisplay({ data }: TypewriterProps) {
   const renderElement = useCallback(() => {
     const { type, styles: style, text, children } = data;
     if (text) {
@@ -26,11 +31,42 @@ const RecursiveDisplay: React.FC<{ data: TypewriterData }> = ({ data }) => {
   }, [data]);
 
   return <Fragment>{renderElement()}</Fragment>;
-};
+}
+
+export function TextFade({ text, delay = 0, stagger = 100 }: TextFadeProps) {
+  const [words, setWords] = useState<string[]>([]);
+
+  useEffect(() => {
+    const words = text.split(" ");
+    const timers: NodeJS.Timeout[] = [];
+
+    const timer = setTimeout(() => {
+      words.forEach((word, index) => {
+        timers.push(
+          setTimeout(() => {
+            setWords((state) => [...state, word]);
+          }, stagger * index)
+        );
+      });
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+      timers.forEach((timer) => clearTimeout(timer));
+    };
+  }, [text, stagger, delay]);
+
+  return (
+    <Fragment>
+      {words.map((word, index) => (
+        <span key={String([word, index])} className="animate-in fade-in">
+          {word}&nbsp;
+        </span>
+      ))}
+    </Fragment>
+  );
+}
 
 export function Typewriter({ data }: TypewriterProps) {
-  // @ts-expect-error - required for icons to work
-  const [isComplete, setIsComplete] = useState<boolean>(false); // eslint-disable-line
-
   return <RecursiveDisplay data={data} />;
 }
