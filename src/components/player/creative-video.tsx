@@ -1,6 +1,6 @@
 import { VideoHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
-import { PauseIcon, PlayIcon, VolumeIcon, VolumeOffIcon } from "lucide-react";
+import { PauseIcon, PlayIcon, Volume2Icon as VolumeOnIcon, VolumeOffIcon } from "lucide-react";
 import { useVideoCreative } from "@/hooks/use-video-creative";
 
 const aspectRatioMap = {
@@ -20,7 +20,7 @@ interface CreativeVideoPlayerProps extends VideoHTMLAttributes<HTMLVideoElement>
 }
 
 export function CreativeVideoPlayer({ src, className, container, fluid, ...props }: CreativeVideoPlayerProps) {
-  const [player, video] = useVideoCreative(src);
+  const [player, video] = useVideoCreative(src, true);
   return (
     <div className={cn("relative", container)}>
       <video
@@ -32,10 +32,10 @@ export function CreativeVideoPlayer({ src, className, container, fluid, ...props
       />
       <div className="absolute left-0 bottom-0 w-full flex justify-between items-center px-3 pb-3 gap-8">
         <button onClick={video.onTogglePlay} className="h-8 w-8 grid place-items-center bg-black/30 rounded-full backdrop-blur">
-          {video.isPlaying ? <PauseIcon color="white" size={16} /> : <PlayIcon color="white" size={16} />}
+          {video.isPlaying ? <PauseIcon fill="white" color="white" size={16} /> : <PlayIcon fill="white" color="white" size={16} />}
         </button>
         <button onClick={video.onToggleMute} className="h-8 w-8 grid place-items-center bg-black/30 rounded-full backdrop-blur">
-          {video.isMuted ? <VolumeOffIcon color="white" size={16} /> : <VolumeIcon color="white" size={16} />}
+          {video.isMuted ? <VolumeOffIcon fill="white" color="white" size={16} /> : <VolumeOnIcon fill="white" color="white" size={16} />}
         </button>
       </div>
     </div>
